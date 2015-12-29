@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using SqliteApp;
 
 public partial class _Default : System.Web.UI.Page
 {
@@ -66,5 +67,31 @@ public partial class _Default : System.Web.UI.Page
     public static string getUrl()  
     {   
         return  "http://www.hao123.com/logo.gif";  
-    } 
+    }
+    protected void sqlite_Click(object sender, EventArgs e)
+    { 
+      
+       Program.Select();
+      
+
+          
+    }
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+        Program.Select();
+    }
+
+
+    protected void Button3_Click(object sender, EventArgs e)
+    {
+        Program.Insert();
+    }
+    protected void Button4_Click(object sender, EventArgs e)
+    {
+        Program.Update();
+    }
+    protected void Button5_Click(object sender, EventArgs e)
+    {
+        Program.Delete();
+    }
 }

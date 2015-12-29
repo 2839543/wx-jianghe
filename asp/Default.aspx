@@ -47,7 +47,16 @@
 <p>Count numbers: <output id="result1"></output></p>
 <button onclick="startWorker()">Start Worker</button>
 <button onclick="stopWorker()">Stop Worker</button>
-<br /><br />
+<br />
+        <asp:Button ID="sqlite" runat="server" OnClick="sqlite_Click" Text="sqlite-test" />
+        <br />
+        <br />
+        <br />
+        <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="select" />
+        <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="insert" />
+        <asp:Button ID="Button4" runat="server" OnClick="Button4_Click" Text="update" />
+        <asp:Button ID="Button5" runat="server" OnClick="Button5_Click" Text="delete" />
+        <br />
 
 <script type="text/javascript">
     var w;
