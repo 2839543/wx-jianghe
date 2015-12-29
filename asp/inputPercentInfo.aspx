@@ -65,6 +65,11 @@
             测试用工具区</p>
         <p>
             <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="切换到电池充电页面，屏蔽页面3" />
+        &nbsp;</p>
+        <p>
+            &nbsp;<asp:Button ID="showPercent" runat="server" OnClick="Button4_Click" Text="查看当前电池百分比值" />
+&nbsp;<asp:Label ID="Label4" runat="server" Text="查询电池百分比为:"></asp:Label>
+            <asp:Label ID="percent" runat="server" Text="%"></asp:Label>
         </p>
     </form>
 </body>

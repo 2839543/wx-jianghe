@@ -11,7 +11,7 @@ using System.Data.SQLite;
 /// </summary>
 public class Sqlite_Battery_T
 {  
-        static readonly string DB_PATH = "Data Source =d:/database/sqlite/test.db";
+        static readonly string DB_PATH = "Data Source =d:/database/sqlite/wx_jianghe.db";
 
         public Sqlite_Battery_T()   //无参数构造函数
         {
@@ -41,6 +41,34 @@ public class Sqlite_Battery_T
                 }
             }
         }
+
+          public static String GetPercent()
+          {
+              string rPercent = String.Empty;
+
+             string _currentTime = DateTime.Now.ToString("HHmm");
+
+              using (SQLiteConnection con = new SQLiteConnection(DB_PATH))
+              {
+                  con.Open();
+                  string sqlStr = @"SELECT *
+                                    FROM battery where showtime > " + _currentTime + " order by showtime  limit 1;";
+                  using (SQLiteCommand cmd = new SQLiteCommand(sqlStr, con))
+                  {
+                      using (SQLiteDataReader dr = cmd.ExecuteReader())
+                      {
+                          while (dr.Read())
+                          {
+                              Console.WriteLine(dr["showtime"].ToString() + dr["percent"]);
+                              rPercent = dr["percent"].ToString();
+                          }
+                      }
+                  }
+
+                  return rPercent;
+              }
+          }
+
 
           public static void Insert(int showtime,int percent)
         {

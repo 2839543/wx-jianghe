@@ -77,4 +77,8 @@ public partial class inputPercentInfo : System.Web.UI.Page
     {
         GlobalConf.VICTORY = false;
     }
+    protected void Button4_Click(object sender, EventArgs e)
+    {
+     percent.Text =      Sqlite_Battery_T.GetPercent();
+    }
 }
