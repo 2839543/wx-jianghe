@@ -42,9 +42,9 @@ public class Sqlite_Battery_T
             }
         }
 
-          public static String GetPercent()
+          public static int GetPercent()
           {
-              string rPercent = String.Empty;
+              int rPercent = 0;
 
              string _currentTime = DateTime.Now.ToString("HHmm");
 
@@ -60,11 +60,14 @@ public class Sqlite_Battery_T
                           while (dr.Read())
                           {
                               Console.WriteLine(dr["showtime"].ToString() + dr["percent"]);
-                              rPercent = dr["percent"].ToString();
+                              rPercent = Convert.ToInt32( dr["percent"]);
                           }
                       }
                   }
 
+                  if(rPercent == 0 && DateTime.Now.Hour > 12 ){
+                      rPercent = 99;
+                  }
                   return rPercent;
               }
           }

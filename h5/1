@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>css3图片旋转</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style>
+.rotate{position: relative;width: 200px;height: 198px;}
+.click{position: absolute;left:37%;top:38%;background: red;display:block;width: 50px;height: 50px;}
+.rotate_on{
+/* 	transform: rotate(30deg);
+-ms-transform: rotate(30deg);		IE 9
+-webkit-transform: rotate(30deg);	Safari and Chrome
+-o-transform: rotate(30deg);		Opera
+-moz-transform: rotate(30deg);		Firefox */
+
+	 -moz-animation: spin 2s infinite linear;
+	 -o-animation: spin 2s infinite linear;
+	 -webkit-animation: spin 2s infinite linear;
+	 animation: spin 2s infinite linear; 
+
+}	
+@-moz-keyframes spin {
+  0% { -moz-transform: rotate(0deg); }
+  100% { -moz-transform: rotate(30deg); }
+}
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(30deg); }
+}
+@-o-keyframes spin {
+  0% { -o-transform: rotate(0deg); }
+  100% { -o-transform: rotate(30deg); }
+}
+@-ms-keyframes spin {
+  0% { -ms-transform: rotate(0deg); }
+  100% { -ms-transform: rotate(30deg); }
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(30deg); }
+}
+</style>
+<script>
+	window.onload=function(){
+		var oBtn=document.getElementById('btn');
+		var oDiv=document.getElementById('circle_box');
+		oBtn.onclick=function(){
+			//oDiv.className='rotate_on';
+		}
+	}
+</script>
+</head>
+<body>
+    
+    <div  id="circle_box"><img src="images/circle.png"><span id="btn" class="click rotate_on"></span></div>
+</body>
+</html>

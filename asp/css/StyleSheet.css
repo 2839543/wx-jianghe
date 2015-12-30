@@ -1,0 +1,49 @@
+﻿
+.div1{
+
+
+
+    width:250px;
+
+    height:400px;
+
+    color:#fff;
+
+    font-size:12px;
+
+    border:10px dotted #333;
+
+    padding:10px;
+
+    background:#666 url(../images/first.jpg) no-repeat;
+
+        -moz-background-size:cover;
+    -webkit-background-size:cover;
+    -o-background-size:cover;
+    background-size:cover;
+}
+
+
+.div2{
+
+
+
+    width:250px;
+
+    height:400px;
+
+    color:#fff;
+
+    font-size:12px;
+
+    border:10px dotted #333;
+
+    padding:10px;
+
+    background:#666 url(../images/second.jpg) no-repeat;
+
+        -moz-background-size:cover;
+    -webkit-background-size:cover;
+    -o-background-size:cover;
+    background-size:cover;
+}

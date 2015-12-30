@@ -10,8 +10,12 @@ public class GlobalConf
 {
     public static bool VICTORY = false;
 
+    public static int percent = 1;
+
 	public GlobalConf()
 	{
     
 	}
+
+
 }

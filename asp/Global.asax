@@ -48,9 +48,9 @@
         // count++;
         // Console.WriteLine("show message ..." + count);
 
-        new Time_Task().countNum();
-      int  _count =  Time_Task.count;
-      Console.WriteLine("show message ..." + _count);
+       // new Time_Task().countNum();
+
+         GlobalConf.percent = Sqlite_Battery_T.GetPercent();  
     }
        
 </script>
