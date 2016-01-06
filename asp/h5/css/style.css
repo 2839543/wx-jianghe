@@ -1,0 +1,97 @@
+/* 第一页*/
+.index_container{position: relative;}
+.mountain{
+	position: 	absolute;	
+	top: 150px;
+	width:100%;
+	height:141px;
+	background:url(../images/mountain.jpg) no-repeat center;
+	-webkit-animation:fadeInTopBig 1.5s ease both;}
+	@-webkit-keyframes fadeInTopBig{
+	0%{opacity:0;
+	-webkit-transform:translateY(-600px)}
+	100%{opacity:1;
+	-webkit-transform:translateX(0)}
+	}
+}
+.mountain img{width: 100%;display: block;}
+.people_box{position: 	absolute;	
+	top: 250px;
+	left: 480px;
+	width:223px;
+	height:283px;
+	background:url(../images/people.jpg) no-repeat center;
+	-webkit-animation:fadeInLeftPeople 1.5s ease both;}
+	@-webkit-keyframes fadeInLeftPeople{
+	0%{opacity:0;
+	-webkit-transform:translateX(-600px)}
+	100%{opacity:1;
+	-webkit-transform:translateX(0)}}
+.company_logo{position: 	absolute;	
+	top: 325px;
+	left:250px;
+	width:412px;
+	height:82px;
+	background:url(../images/people.jpg) no-repeat center;
+	-webkit-animation:fadeInLeftLogo 1.5s ease both;}
+	@-webkit-keyframes fadeInLeftLogo{
+	0%{opacity:0;
+	-webkit-transform:translateX(-600px)}
+	100%{opacity:1;
+	-webkit-transform:translateX(0)}}	
+.start{position: absolute;top: 700px;left:285px;}
+/* 第二页 */
+.bg2_container{background: url(images/bg_2.jpg) no-repeat;background-size: 100% 100%; position: relative;height: 100%;}
+/* 第三页 */
+.charging_box{padding:90px 20px 114px 73px;} */
+/* 旋转电量饼图 */
+.icon-play {
+  -moz-animation: spin 2s infinite linear;
+  -o-animation: spin 2s infinite linear;
+  -webkit-animation: spin 2s infinite linear;
+  animation: spin 2s infinite linear;
+}
+@-moz-keyframes spin {
+  0% { -moz-transform: rotate(0deg); }
+  100% { -moz-transform: rotate(720deg); }
+}
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(720deg); }
+}
+@-o-keyframes spin {
+  0% { -o-transform: rotate(0deg); }
+  100% { -o-transform: rotate(720deg); }
+}
+@-ms-keyframes spin {
+  0% { -ms-transform: rotate(0deg); }
+  100% { -ms-transform: rotate(720deg); }
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(720deg); }
+}
+.rotate{position: absolute;width: 200px;height: 198px;top:500px;left: 250px;}
+.click{position: absolute;left:37%;top:38%;background: red;display:block;width: 50px;height: 50px;}
+
+
+
+
+/* 电池充电过程 */
+.battery_box{position: absolute;margin:5px auto;}
+.electric_box{position: absolute;left:13px;top:35px;}
+.electric_box span{display: block; height: 8px;width: 66px;left:73px;top:90px;}
+.electric{width: 66px;height: 8px;background: orange;display: block;margin:5px auto;}
+
+/* 游戏规则 */
+.description{width: 360px;height: 114px;color: #fff;font-size: 36px;position: absolute;top:270px;right: 42px;}
+
+/* 飞入江河logo */
+.wenzi{position:absolute;left: 300px;top:124px;width:273px;height:102px;background:url(../images/river_go.jpg) no-repeat center;-webkit-animation:fadeInLeftBig 1.5s ease both;}
+	@-webkit-keyframes fadeInLeftBig{
+	0%{opacity:0;
+	-webkit-transform:translateX(-600px)}
+	100%{opacity:1;
+	-webkit-transform:translateX(0)}
+	}
+}
