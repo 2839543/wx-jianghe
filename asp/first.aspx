@@ -29,6 +29,7 @@
 			
 		</div>
     </div>
+<!--
 <script>
     var oBtn = document.getElementById('start-btn');
     var oImg = document.getElementById('star-img');
@@ -40,6 +41,7 @@
         oImg.src = 'images/start_btn.jpg';
     });
 </script>
+        -->
 <script type="text/javascript" src="js/MetaHandler.js"></script>
  
  </form>

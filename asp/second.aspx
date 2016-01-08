@@ -24,9 +24,11 @@
 		<p>旋动下方圆形按钮，从左向右顺时针旋转，即可为江河充电加油</p>
 	</div>
 	<div class="circleBtn">
+		<div class="otercir_bor"></div>
+		<div class="inercir_bor"></div>
 		<div class="rotate" id='box'>
 			<img id="img" src="images/outer_circle.png" class="outer_circle" /> 
-			<span id="btn" class="click"><img src="images/inner_btn.png" alt=""> </span>
+			<span id="btn" class="click"><img id="middlecir" src="images/inner_btn.png" alt=""> </span>
 			<span class="elect" id='span1'></span>
 		</div>
 	</div>
@@ -81,38 +83,75 @@
       var oSpan = document.getElementById('span1');
       var a = 90; // 角度
       var oDiv = document.getElementById('box');
-      var R = oDiv.offsetWidth / 2 + 10;
+	  var sourceLeft=oSpan.offsetLeft;
+      var sourceTop=oSpan.offsetTop;
+      var R=oDiv.offsetWidth/2;
       var Bigtimer = null;
       var smalltimer = null;
-      var b = 100;
-      document.onclick = function () {
-          Bigtimer = setInterval(function () {
-              a++;
-              if (a >= 270) {
-                  var x = -10;
-                  b--;
-                  if (b <= -200) {
-                      oSpan.style.top = (-200) + 'px';
-                      clearInterval(Bigtimer);
-                  } else {
-                      oSpan.style.left = (x - 10) + 'px';
-                      oSpan.style.top = b + 'px';
-                  }
-              } else {
-                  var x = R + R * Math.sin(d2a(a));
-                  var y = R - R * Math.cos(d2a(a));
+      var b=160;
+	  var c=0;
+	  var op=0;
+      var middlecirTimer=null;
+//手指滑动
+	var oImg=document.getElementById('img');
+	// var ocolorcir=document.getElementById('colorcir');
+	var imgdeg=0;
+	oImg.addEventListener("touchmove", function(){
+		clearInterval(middlecirTimer);
+		
+		imgdeg+=2;
+		console.log(imgdeg);
+		oImg.style['-webkit-transform']='rotate('+imgdeg+'deg)';
+	});
+//手指点击中间部分
+	var omiddlecir=document.getElementById('middlecir');
+	omiddlecir.addEventListener('touchstart',function(){
+		clearInterval(Bigtimer);
+		clearInterval(middlecirTimer);
+		middlecirTimer=setInterval(function(){
+			imgdeg+=2;
+			oImg.style['-webkit-transform']='rotate('+imgdeg+'deg)';
+		},1);
+      drowLine()
 
-                  oSpan.style.left = (x - 10) + 'px';
-                  oSpan.style.top = y + 'px';
-              }
+	})
+  function drowLine(){
+      Bigtimer=setInterval(function (){
+        a+=0.5;
+        c+=0.5;
+        op+=0.01;
+       // console.log(c)
+        if(a>=270){
+          var x=0;
+          b--;
+          if(b<=-200){
+            b=160;
+            a=90;
+            c=0;
+            clearInterval(Bigtimer);
+            oSpan.style.top=sourceTop+'px';
+            oSpan.style.left=sourceLeft+'px';
+          	oSpan.style.opacity=0;
+            drowLine()
+          }else {
+            oSpan.style.left=(x-4)+'px';
+            oSpan.style.top=b+'px';
+          }
+        }else{
+          var x=R+R*Math.sin(d2a(a));
+          var y=R-R*Math.cos(d2a(a));
+          oSpan.style.transform='rotate('+c+'deg)'
+          oSpan.style.opacity=op;
+          oSpan.style.left=(x-4)+'px';
+          oSpan.style.top=y+'px';
+        }
 
-
-          }, 1);
-      }
-
-      function d2a(n) {
-          return n * Math.PI / 180;
-      }
+      }, 1);
+  };
+  function d2a(n)
+  {
+    return n*Math.PI/180;
+  }
 </script>
 <script>
     window.onload = function () { 
