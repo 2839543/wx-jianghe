@@ -19,7 +19,18 @@ public partial class inputPercentInfo : System.Web.UI.Page
     
     protected void Button2_Click(object sender, EventArgs e)
     {
-        GlobalConf.VICTORY = true;
+        if (GlobalConf.VICTORY)
+        {
+            GlobalConf.VICTORY = false;
+            Button2.Text = "点击结束电池充电页面，转换江河3页面"; 
+            Button2.BackColor = System.Drawing.Color.Red; 
+           
+        }else{ 
+            GlobalConf.VICTORY = true;
+            Button2.Text = "点击切换到电池充电页面，屏蔽页面3 ";
+            Button2.BackColor = System.Drawing.Color.GreenYellow;
+        }
+        
     }
     protected void Button3_Click(object sender, EventArgs e)
     {
