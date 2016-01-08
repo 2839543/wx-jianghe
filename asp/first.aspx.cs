@@ -12,9 +12,6 @@ public partial class first : System.Web.UI.Page
         if (GlobalConf.VICTORY == true)
         {
             Response.Redirect("thrid.html", false);
-        }
-
-        Label1.Text = DateTime.Now.ToString();  
-         
+        }  
     }
 }
