@@ -58,6 +58,15 @@
 
 
 
+            <asp:Button ID="Button4" runat="server" OnClientClick="return confirm('Are u sure?');" OnClick="Button4_Click" Text="点击切换为正常投票计数" Height="250px" Width="100%" BackColor="Red" Font-Size="XX-Large"/>
+        <br />
+        <br />
+        <br />
+
+
+
+
+
         <br />
         <asp:Button ID="Button2" runat="server" OnClientClick="return confirm('Are u sure?');"  OnClick="Button2_Click" Text="点击结束电池充电页面，转换江河3页面" Height="250px" Width="100%" BackColor="Red" Font-Size="XX-Large" />
         <br />

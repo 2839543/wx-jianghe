@@ -115,113 +115,119 @@
 //手指点击中间部分
   var omiddlecir=document.getElementById('middlecir');
   omiddlecir.addEventListener('touchstart',function(){
-    clearInterval(Bigtimer);
-    clearTimeout(electtop);
-    clearTimeout(electbottom);
-    clearInterval(spantimer);
-    clearTimeout(sourceTimer1);
-    clearTimeout(sourceTimer2);
-    imgdeg+=720;
-    console.log(imgdeg)
-    oImg.style['-webkit-transform']='rotate('+imgdeg+'deg)';
-    // drowLine()
-    //电池变化
-    electtop=setTimeout(function change(){
-        oChangeImg.src = 'images/shine_battery.png';
-        sourceTimer1=setTimeout(function(){
-        	oChangeImg.src = 'images/battery.png';
-        },1000);
-    },500);
-  //电流图片
-    electbottom=setTimeout(function(){
-      oChangeImg1.src='images/line_before.png';
-        sourceTimer2=setTimeout(function(){
-        	oChangeImg1.src ='images/line_after.png';
-        },1000);
-    },500);
- //改变电量变化
-  	var oDivelect=document.getElementById('electric_btn')
-  	var aSpan=oDivelect.getElementsByTagName('span');   // 获取标签为span的数组
-  	var spanLength=aSpan.length;                       //获取数组长度
-  	var index=spanLength-1;							   // 游标,因为数组是从0开始  这里减去1
+      clearInterval(Bigtimer);
+      clearTimeout(electtop);
+      clearTimeout(electbottom);
+      clearInterval(spantimer);
+      clearTimeout(sourceTimer1);
+      clearTimeout(sourceTimer2);
+      imgdeg+=720;
+      console.log(imgdeg)
+      oImg.style['-webkit-transform']='rotate('+imgdeg+'deg)';
+      // drowLine()
+      //电池变化
+      electtop=setTimeout(function change(){
+          oChangeImg.src = 'images/shine_battery.png';
+          sourceTimer1=setTimeout(function(){
+              oChangeImg.src = 'images/battery.png';
+          },1000);
+      },500);
+      //电流图片
+      electbottom=setTimeout(function(){
+          oChangeImg1.src='images/line_before.png';
+          sourceTimer2=setTimeout(function(){
+              oChangeImg1.src ='images/line_after.png';
+          },1000);
+      },500);
+      //改变电量变化
+      var oDivelect=document.getElementById('electric_btn')
+      var aSpan=oDivelect.getElementsByTagName('span');   // 获取标签为span的数组
+      var spanLength=aSpan.length;                       //获取数组长度
+      var index=spanLength-1;							   // 游标,因为数组是从0开始  这里减去1
 
-        var _percent = 0;
-        var max = 3;
+      var _percent = 0;
+      var max = 3;
 
-        _percent = '<%= percent %>';
+      _percent = '<%= percent %>';
        
 
-        index = 9;
+      index = 9;
          
-        setInterval(function(){
-            _percent = document.getElementById('result').textContent;
-            max = Math.ceil(_percent / 10);
+      setInterval(function(){
+          _percent = document.getElementById('result').textContent;
+          max = Math.ceil(_percent / 10);
              
-            if (index >= 10 - max)                                    //如果游标大于等于0给位于aSpan数组第Index处的span对象className赋值
-            {
+          if (index >= 10 - max)                                    //如果游标大于等于0给位于aSpan数组第Index处的span对象className赋值
+          {
 
-                var objSpan = aSpan[index];                   //得到要赋值的span对象
+              var objSpan = aSpan[index];                   //得到要赋值的span对象
 
-                objSpan.className = 'electric';              //给该span的className赋值
+              objSpan.className = 'electric';              //给该span的className赋值
 
-                index--;								  //游标减一，给下一次跳进这个函数的下一个span赋值	
-            } else if (_percent >= 100) {
+              index--;								  //游标减一，给下一次跳进这个函数的下一个span赋值	
+          } else if (_percent >= 100) {
                 
-                document.getElementById('show3').textContent = "完成充电"; 
-                setTimeout(" window.location = 'thrid.html';", 5000);
+              document.getElementById('show3').textContent = "完成充电"; 
+              setTimeout(" window.location = 'thrid.html';", 5000);
                
-            }
-            else {
-                //index = spanLength - 1;
-                index = 9;
-                clearall();
-                //当游标小于0时可以在此处终止计时器,充满电后的处理
-                //alert("hello   world!");
+          }
+          else {
+              //index = spanLength - 1;
+              index = 9;
+              clearall();
+              //当游标小于0时可以在此处终止计时器,充满电后的处理
+              //alert("hello   world!");
 
-            }
-            document.getElementById('l_percent').textContent = _percent;
-            document.getElementById('pecent_num').textContent = _percent+ "%";
-            timedCount();
+          }
+          document.getElementById('l_percent').textContent = _percent;
+          document.getElementById('pecent_num').textContent = _percent+ "%";
+          timedCount();
 
-        }, 800);
+      }, 1500);
 
-        /*
-            var oEbtn=document.getElementById('electric_btn');
-            var aSpan=document.getElementsByTagName('span');
-            function add(){
-                
-                for(var i=0;i<aSpan.length;i++){
-                    
-                    if(aSpan[i].className==""){
-                        aSpan[i].className='electric';
-                        
-                        console.log(aSpan[i].className);
-                    }
-                }
-            }
-            add();
-        */
+      /*
+          var oEbtn=document.getElementById('electric_btn');
+          var aSpan=document.getElementsByTagName('span');
+          function add(){
+              
+              for(var i=0;i<aSpan.length;i++){
+                  
+                  if(aSpan[i].className==""){
+                      aSpan[i].className='electric';
+                      
+                      console.log(aSpan[i].className);
+                  }
+              }
+          }
+          add();
+      */
 
-        function clearall() {
+      function clearall() {
 
-            for (var i = 0; i < aSpan.length; i++) {
+          for (var i = 0; i < aSpan.length; i++) {
 
-                if (aSpan[i].className == "electric") {
-                    aSpan[i].className = '';
+              if (aSpan[i].className == "electric") {
+                  aSpan[i].className = '';
 
-                    console.log(aSpan[i].className);
-                }
-            }
-        }
-        function timedCount() {
-            // alert("timecount->"+_percent);
-            document.getElementById("l_percent").innerHTML = "timedCount->" + _percent; 
+                  console.log(aSpan[i].className);
+              }
+          }
+      }
+      function timedCount() {
+          // alert("timecount->"+_percent);
+          document.getElementById("l_percent").innerHTML = "timedCount->" + _percent; 
             
-            //  setTimeout("timedCount()", 3000);
-        }
+          //  setTimeout("timedCount()", 3000);
+      }
 
-    }
+  });
 </script>
+ <script>
+  	window.onload=function(){
+
+
+  	}
+  </script>
 <script type="text/javascript" src="js/MetaHandler.js"></script>
 </body>
 </html>
