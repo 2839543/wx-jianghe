@@ -10,13 +10,12 @@ using System.Data.SQLite;
 /// Class1 的摘要说明
 /// </summary>
 public class Sqlite_Battery_T
-{  
-        static readonly string DB_PATH = "Data Source =d:/database/sqlite/wx_jianghe.db";
+{ 
 
         public Sqlite_Battery_T()   //无参数构造函数
         {
-           SQLiteConnection conn = null;   
-           conn = new SQLiteConnection(DB_PATH);//创建数据库实例，指定文件位置  
+           SQLiteConnection conn = null;
+           conn = new SQLiteConnection(GlobalConf.DB_PATH);//创建数据库实例，指定文件位置  
            conn.Open();//打开数据库，若文件不存在会自动创建  
         } 
 
@@ -24,7 +23,7 @@ public class Sqlite_Battery_T
           public static void Select()
         {
 
-            using (SQLiteConnection con = new SQLiteConnection(DB_PATH))
+            using (SQLiteConnection con = new SQLiteConnection(GlobalConf.DB_PATH))
             {
                 con.Open();
                 string sqlStr = @"SELECT *
@@ -48,7 +47,7 @@ public class Sqlite_Battery_T
 
              string _currentTime = DateTime.Now.ToString("HHmm");
 
-              using (SQLiteConnection con = new SQLiteConnection(DB_PATH))
+             using (SQLiteConnection con = new SQLiteConnection(GlobalConf.DB_PATH))
               {
                   con.Open();
                   string sqlStr = @"SELECT *
@@ -72,10 +71,11 @@ public class Sqlite_Battery_T
               }
           }
 
+         
 
           public static void Insert(int showtime,int percent)
         {
-            using (SQLiteConnection con = new SQLiteConnection(DB_PATH))
+            using (SQLiteConnection con = new SQLiteConnection(GlobalConf.DB_PATH))
             {
                 con.Open();
                 string sqlStr = @"INSERT INTO battery
@@ -92,7 +92,7 @@ public class Sqlite_Battery_T
 
        public static void Update()
         {
-            using (SQLiteConnection con = new SQLiteConnection(DB_PATH))
+            using (SQLiteConnection con = new SQLiteConnection(GlobalConf.DB_PATH))
             {
                 con.Open();
                 string sqlStr = @"UPDATE battery
@@ -107,7 +107,7 @@ public class Sqlite_Battery_T
 
        public static void Delete()
         {
-            using (SQLiteConnection con = new SQLiteConnection(DB_PATH))
+            using (SQLiteConnection con = new SQLiteConnection(GlobalConf.DB_PATH))
             {
                 con.Open();
                 string sqlStr = @"DELETE FROM battery";
@@ -120,7 +120,7 @@ public class Sqlite_Battery_T
 
        public static void DeleteAll()
        {
-           using (SQLiteConnection con = new SQLiteConnection(DB_PATH))
+           using (SQLiteConnection con = new SQLiteConnection(GlobalConf.DB_PATH))
            {
                con.Open();
                string sqlStr = @"DELETE FROM battery";

@@ -49,8 +49,24 @@
         // Console.WriteLine("show message ..." + count);
 
        // new Time_Task().countNum();
-
-         GlobalConf.percent = Sqlite_Battery_T.GetPercent();  
+        int _percent = Sqlite_Battery_T.GetPercent();
+        
+        if(GlobalConf.HALFWAY_PAUSE){
+        //中途暂停百分比增长 ,获取暂停百分比的值
+            int p_percent = Sqlite_Task_T.getHalfwayPause();
+            
+            //暂停
+            if(p_percent < _percent ){
+                GlobalConf.percent = p_percent;
+                return; 
+            }
+            
+                
+        } 
+        
+        //正常百分比增长的值
+         GlobalConf.percent = _percent;   
+          
     }
        
 </script>

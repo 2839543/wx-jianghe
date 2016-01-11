@@ -67,6 +67,21 @@
         <p>
             <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="切换到电池充电页面，屏蔽页面3" />
         </p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p>
+            <asp:Button ID="Button6" runat="server" OnClick="Button6_Click" Text="设置开关暂停百分比" />
+        </p>
+        <p>
+            <asp:Button ID="Button7" runat="server" OnClick="Button7_Click" Text="查看暂停设置" />
+            <asp:Label ID="Label4" runat="server" Text="Label"></asp:Label>
+        </p>
     </form>
+    <p>
+        &nbsp;</p>
 </body>
 </html>

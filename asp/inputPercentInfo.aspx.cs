@@ -77,4 +77,16 @@ public partial class inputPercentInfo : System.Web.UI.Page
     {
         GlobalConf.VICTORY = false;
     }
+    protected void Button6_Click(object sender, EventArgs e)
+    {
+        //取反操作
+        GlobalConf.HALFWAY_PAUSE ^= true;
+
+        Button6.Text = "点击设置开关暂停百分比:当前为->" + GlobalConf.HALFWAY_PAUSE;
+    }
+    protected void Button7_Click(object sender, EventArgs e)
+    {
+         int r =  Sqlite_Task_T.getHalfwayPause();
+         r.ToString();
+    }
 }
