@@ -34,9 +34,21 @@
 			<span class="elect" id='span1'></span>
 		</div>
 	</div>
-	<div class="battery_box" id="battery_shine">
-    	<img src="images/battery.png" alt="" id="pic" data-status='0'>
-    	<em class="pecent_num">30%</em>
+
+    <div>  
+        <asp:ScriptManager ID="ScriptManager1" runat="Server" ></asp:ScriptManager><!--必须包含这个控件，否则UpdatePanel无法使用-->  
+    </div>  
+
+    <div class="battery_box">
+        <img src="images/battery.png" alt="">
+        
+          <em class="pecent_num"> <asp:UpdatePanel ID="UpdatePanel1" runat="server">  
+                <ContentTemplate>
+            <!--Lable和Timer控件必须都包含在UpdatePanel控件中 -->  
+                    <asp:Label ID="result" runat="server" Text="Label">%</asp:Label>  <!--用于显示时间-->  
+                    <asp:Timer ID="Timer1" runat="server" Interval="1000"></asp:Timer><!-- 用于更新时间，每1秒更新一次-->  
+                </ContentTemplate>                  
+            </asp:UpdatePanel>     </em>
     	<div class="electric_box" id="electric_btn">
     		<span></span>
 	    	<span></span>
