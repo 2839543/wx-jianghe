@@ -98,6 +98,9 @@
     var middlecirTimer=null;
     var electtop=null;
     var electbottom=null;
+    var spantimer=null;
+    var sourceTimer1=null;
+    var sourceTimer2=null;
 //手指滑动
   var oImg=document.getElementById('img');
   // var ocolorcir=document.getElementById('colorcir');
@@ -115,65 +118,32 @@
     clearInterval(Bigtimer);
     clearTimeout(electtop);
     clearTimeout(electbottom);
+    clearInterval(spantimer);
+    clearTimeout(sourceTimer1);
+    clearTimeout(sourceTimer2);
     imgdeg+=720;
     console.log(imgdeg)
     oImg.style['-webkit-transform']='rotate('+imgdeg+'deg)';
-    drowLine()
+    // drowLine()
     //电池变化
     electtop=setTimeout(function change(){
         oChangeImg.src = 'images/shine_battery.png';
-    },1000);
+        sourceTimer1=setTimeout(function(){
+        	oChangeImg.src = 'images/battery.png';
+        },1000);
+    },500);
   //电流图片
     electbottom=setTimeout(function(){
       oChangeImg1.src='images/line_before.png';
-    },1000);
-
-  });
-
-  function drowLine(){
-      Bigtimer=setInterval(function (){
-        a+=0.5;
-        c+=0.5;
-        op+=0.01;
-       // console.log(c)
-        if(a>=270){
-          var x=0;
-          b--;
-          if(b<=-200){
-            b=160;
-            a=90;
-            c=0;
-            clearInterval(Bigtimer);
-            oSpan.style.top=sourceTop+'px';
-            oSpan.style.left=sourceLeft+'px';
-          	oSpan.style.opacity=0;
-            drowLine()
-          }else {
-            oSpan.style.left=(x-4)+'px';
-            oSpan.style.top=b+'px';
-          }
-        }else{
-          var x=R+R*Math.sin(d2a(a));
-          var y=R-R*Math.cos(d2a(a));
-          oSpan.style.transform='rotate('+c+'deg)'
-          oSpan.style.opacity=op;
-          oSpan.style.left=(x-4)+'px';
-          oSpan.style.top=y+'px';
-        }
-
-      }, 1);
-  };
-  function d2a(n)
-  {
-    return n*Math.PI/180;
-  }
-</script>
-<script>
-    window.onload = function () { 
-        var oDivelect = document.getElementById('electric_btn')
-        var aSpan = oDivelect.getElementsByTagName('span');   // 获取标签为span的数组
-        var spanLength = aSpan.length;                       //获取数组长度
-        var index = spanLength - 1;							   // 游标,因为数组是从0开始  这里减去1					
+        sourceTimer2=setTimeout(function(){
+        	oChangeImg1.src ='images/line_after.png';
+        },1000);
+    },500);
+ //改变电量变化
+  	var oDivelect=document.getElementById('electric_btn')
+  	var aSpan=oDivelect.getElementsByTagName('span');   // 获取标签为span的数组
+  	var spanLength=aSpan.length;                       //获取数组长度
+  	var index=spanLength-1;							   // 游标,因为数组是从0开始  这里减去1
 
         var _percent = 0;
         var max = 3;

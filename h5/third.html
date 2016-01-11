@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>Examples</title>
-<meta name="description" content="">
-<meta name="keywords" content="">
-<link href="" rel="stylesheet">
-<style type="text/css">
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta content="target-densitydpi=device-dpi,width=750" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no,email=no" name="format-detection" />
+<title>第三页</title>
+<link href="css/common.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<!-- <style type="text/css">
 	body {
     margin: 0;
     padding: 0;
@@ -25,14 +27,12 @@
 #cas {
     width: 100%;
 }
-</style>
+</style> -->
 </head>
 <body>
-    <div style="height:700px;overflow:hidden;">
+<div style="height:700px;overflow:hidden;" id='casBox'>
     <canvas id='cas' style="background-color:rgba(0,5,24,1);">浏览器不支持canvas</canvas>
-    <div class="city"><img src="img/color_logo.png" alt="" />
-    </div>
-    <img src="img/moon.png" alt="" id="moon" style="visibility: hidden;" />
+    <img src="images/bg_3.jpg" alt="" id="moon" style="visibility: hidden;" />
     <div style="display:none">
         <div class="shape">国庆快乐</div>
         <div class="shape">万事如意</div>
@@ -40,12 +40,13 @@
     </div>
 </div>
 <script type="text/javascript">
-	var canvas = document.getElementById("cas");
+		document.getElementById("casBox").style.height = window.innerHeight + 'px';
+		var canvas = document.getElementById("cas");
 		var ocas = document.createElement("canvas");
 		var octx = ocas.getContext("2d");
 		var ctx = canvas.getContext("2d");
 		ocas.width = canvas.width = window.innerWidth;
-		ocas.height = canvas.height = 700;
+		ocas.height = canvas.height = window.innerHeight;
 		var bigbooms = [];
 
 		window.onload = function() {
@@ -117,14 +118,15 @@
 
 		function drawMoon() {
 		    var moon = document.getElementById("moon");
-		    var centerX = canvas.width - 200,
-		        centerY = 100,
-		        width = 80;
+		    var centerX = canvas.width - window.innerWidth,
+		        centerY =  0,
+		        width = window.innerWidth,
+		        height =  window.innerHeight;
 		    if (moon.complete) {
-		        ctx.drawImage(moon, centerX, centerY, width, width)
+		        ctx.drawImage(moon, centerX, centerY, width, height)
 		    } else {
 		        moon.onload = function() {
-		            ctx.drawImage(moon, centerX, centerY, width, width)
+		            ctx.drawImage(moon, centerX, centerY, width, height)
 		        }
 		    }
 		    var index = 0;
@@ -236,7 +238,7 @@
 		            var a = getRandom(-Math.PI, Math.PI);
 		            var x = getRandom(0, fanwei) * Math.cos(a) + this.x;
 		            var y = getRandom(0, fanwei) * Math.sin(a) + this.y;
-		            var radius = getRandom(0, 2)
+		            var radius = getRandom(0, 4)
 		            var frag = new Frag(this.x, this.y, radius, color, x, y);
 		            this.booms.push(frag);
 		        }
