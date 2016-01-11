@@ -130,15 +130,15 @@
           oChangeImg.src = 'images/shine_battery.png';
           sourceTimer1=setTimeout(function(){
               oChangeImg.src = 'images/battery.png';
-          },1000);
-      },500);
+          },100);
+      },30);
       //电流图片
       electbottom=setTimeout(function(){
           oChangeImg1.src='images/line_before.png';
           sourceTimer2=setTimeout(function(){
               oChangeImg1.src ='images/line_after.png';
-          },1000);
-      },500);
+          },100);
+      },20);
       //改变电量变化
       var oDivelect=document.getElementById('electric_btn')
       var aSpan=oDivelect.getElementsByTagName('span');   // 获取标签为span的数组
