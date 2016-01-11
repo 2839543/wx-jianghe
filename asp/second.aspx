@@ -24,29 +24,19 @@
 		<p>旋动下方圆形按钮，从左向右顺时针旋转，即可为江河充电加油</p>
 	</div>
 	<div class="circleBtn">
+		<img src="images/line_after.png" alt="" class="line_before" id="pics" data-stade='0'>
 		<div class="otercir_bor"></div>
 		<div class="inercir_bor"></div>
 		<div class="rotate" id='box'>
-			<img id="img" src="images/outer_circle.png" class="outer_circle" /> 
-			<span id="btn" class="click"><img id="middlecir" src="images/inner_btn.png" alt=""> </span>
+			<img id="img" src="images/outer_circle.png" class="outer_circle" style="transition:2s all ease;"/>
+			<img src="images/color_circle.png" class="color_circle icon-play" id="img2" alt="">
+			<span id="btn" class="click"><img id="middlecir" src="images/inner_btn.png" alt="" > </span>
 			<span class="elect" id='span1'></span>
 		</div>
 	</div>
-
-    <div>  
-        <asp:ScriptManager ID="ScriptManager1" runat="Server" ></asp:ScriptManager><!--必须包含这个控件，否则UpdatePanel无法使用-->  
-    </div>  
-
-	<div class="battery_box">
-    	<img src="images/battery.png" alt="">
-        
-    	  <em class="pecent_num"> <asp:UpdatePanel ID="UpdatePanel1" runat="server">  
-                <ContentTemplate>
-            <!--Lable和Timer控件必须都包含在UpdatePanel控件中 -->  
-                    <asp:Label ID="result" runat="server" Text="Label">%</asp:Label>  <!--用于显示时间-->  
-                    <asp:Timer ID="Timer1" runat="server" Interval="1000"></asp:Timer><!-- 用于更新时间，每1秒更新一次-->  
-                </ContentTemplate>                  
-            </asp:UpdatePanel>     </em>   
+	<div class="battery_box" id="battery_shine">
+    	<img src="images/battery.png" alt="" id="pic" data-status='0'>
+    	<em class="pecent_num">30%</em>
     	<div class="electric_box" id="electric_btn">
     		<span></span>
 	    	<span></span>
@@ -68,7 +58,7 @@
 <script>
     window.onload = function () {
         var oBtn = document.getElementById('btn');
-        var oImg = document.getElementById('img');
+        var oImg2 = document.getElementById('img2');
         oBtn.onclick = function () {
             oImg.className = 'icon-play';
 
@@ -80,41 +70,54 @@
 
 </script>
   <script type="text/javascript">
-      var oSpan = document.getElementById('span1');
-      var a = 90; // 角度
-      var oDiv = document.getElementById('box');
-	  var sourceLeft=oSpan.offsetLeft;
-      var sourceTop=oSpan.offsetTop;
-      var R=oDiv.offsetWidth/2;
-      var Bigtimer = null;
-      var smalltimer = null;
-      var b=160;
-	  var c=0;
-	  var op=0;
-      var middlecirTimer=null;
+   var oSpan=document.getElementById('span1');
+    var a=90; // 角度
+    var oDiv=document.getElementById('box');
+     var oChangeImg = document.getElementById('pic');
+    var oChangeImg1 = document.getElementById('pics');
+    var sourceLeft=oSpan.offsetLeft;
+    var sourceTop=oSpan.offsetTop;
+    var R=oDiv.offsetWidth/2;
+    var Bigtimer=null;
+    var smalltimer=null;
+    var b=160;
+    var c=0;
+    var op=0;
+    var middlecirTimer=null;
+    var electtop=null;
+    var electbottom=null;
 //手指滑动
-	var oImg=document.getElementById('img');
-	// var ocolorcir=document.getElementById('colorcir');
-	var imgdeg=0;
-	oImg.addEventListener("touchmove", function(){
-		clearInterval(middlecirTimer);
-		
-		imgdeg+=2;
-		console.log(imgdeg);
-		oImg.style['-webkit-transform']='rotate('+imgdeg+'deg)';
-	});
-//手指点击中间部分
-	var omiddlecir=document.getElementById('middlecir');
-	omiddlecir.addEventListener('touchstart',function(){
-		clearInterval(Bigtimer);
-		clearInterval(middlecirTimer);
-		middlecirTimer=setInterval(function(){
-			imgdeg+=2;
-			oImg.style['-webkit-transform']='rotate('+imgdeg+'deg)';
-		},1);
-      drowLine()
+  var oImg=document.getElementById('img');
+  // var ocolorcir=document.getElementById('colorcir');
+  var imgdeg=0;
+  oImg.addEventListener("touchmove", function(){
+   clearInterval(middlecirTimer);
 
-	})
+   imgdeg+=10;
+   console.log(imgdeg);
+   oImg.style['-webkit-transform']='rotate('+imgdeg+'deg)';
+  });
+//手指点击中间部分
+  var omiddlecir=document.getElementById('middlecir');
+  omiddlecir.addEventListener('touchstart',function(){
+    clearInterval(Bigtimer);
+    clearTimeout(electtop);
+    clearTimeout(electbottom);
+    imgdeg+=720;
+    console.log(imgdeg)
+    oImg.style['-webkit-transform']='rotate('+imgdeg+'deg)';
+    drowLine()
+    //电池变化
+    electtop=setTimeout(function change(){
+        oChangeImg.src = 'images/shine_battery.png';
+    },1000);
+  //电流图片
+    electbottom=setTimeout(function(){
+      oChangeImg1.src='images/line_before.png';
+    },1000);
+
+  });
+
   function drowLine(){
       Bigtimer=setInterval(function (){
         a+=0.5;

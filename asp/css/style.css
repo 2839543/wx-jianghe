@@ -14,7 +14,7 @@ body{overflow: hidden;margin: 0;padding: 0;}
 	0%{opacity:0;
 	-webkit-transform:translateX(-600px)}
 	100%{opacity:1;
-	-webkit-transform:translateX(0)}}	
+	-webkit-transform:translateX(0)}}
 .start{position: absolute;top: 992px;left:285px; border:1px solid #fff; border-radius:50%; text-align:center; cursor:pointer; box-shadow:0 10px 20px rgba(0,0,0,0); background-image: -webkit-gradient(linear, left top, left bottom, from(#6cc3fe), to(#fff));
     -webkit-animation-timing-function: ease-in-out;
     -webkit-animation-name: breathe;
@@ -36,11 +36,13 @@ body{overflow: hidden;margin: 0;padding: 0;}
 	100%{opacity:1;
 	-webkit-transform:translateX(0)}}
 .description{width: 362px;height: 180px;color: #fff;font-size: 36px;position: absolute;top:376px;right: 75px;line-height: 44px;}
-.circleBtn{position: absolute;left:183px;top:332px;/* position: relative; */background: transparent;height: 578px;width: 368px;margin:220px auto;border-bottom-right-radius: 200px;border-bottom-left-radius: 200px;border-bottom: 5px dashed #fff;border-left:5px dashed #fff;}
+.circleBtn{position: absolute;left:183px;top:332px;/* position: relative; */background: transparent;height: 578px;width: 368px;margin:220px auto;/* border-bottom-right-radius: 200px;border-bottom-left-radius: 200px;border-bottom: 5px dashed #fff;border-left:5px dashed #fff; */}
+.line_before{position: absolute;left:-2px;top:16px;height: 100%;width: 100%}
 .outer_circle{position: relative;}
-.rotate{position: relative;top:213px;width: 368px;height: 368px}
-.rotate img{position: absolute;left: 20px}
-.rotate .click{position: absolute;left:80px;top:80px;}
+.rotate{position: absolute;top:213px;width: 368px;height: 368px}
+.rotate .outer_circle{position: absolute;left: 20px}
+.color_circle{position: absolute;left:60px;top:49px;}
+.rotate .click{position: absolute;left:104px;top:91px;}
 .elect{display: block;height: 20px;width:8px;background:#f39b00;position: absolute;right: -10px;top:50%;margin-top: -10px;opacity: 0;}
 .icon-play {
   -moz-animation: spin 2s infinite linear;
@@ -71,7 +73,7 @@ body{overflow: hidden;margin: 0;padding: 0;}
 .otercir_bor{width: 605px;height: 605px;border:2px solid #cf3a20;position: absolute;top:95px;left:-120px;border-radius: 50%;
 	-webkit-animation-timing-function: ease-in-out;
     -webkit-animation-name: shiningbor;
-    -webkit-animation-duration: 2700ms;
+    -webkit-animation-duration: 3200ms;
     -webkit-animation-iteration-count: infinite;
     -webkit-animation-direction: alternate;
 }
@@ -81,7 +83,7 @@ body{overflow: hidden;margin: 0;padding: 0;}
 }
 .inercir_bor{width: 478px;height: 478px;border:2px solid #cf3a20;position: absolute;top:162px;left:-51px;border-radius: 50%;	-webkit-animation-timing-function: ease-in-out;
     -webkit-animation-name: shiningbor2;
-    -webkit-animation-duration: 2700ms;
+    -webkit-animation-duration: 3200ms;
     -webkit-animation-iteration-count: infinite;
     -webkit-animation-direction: alternate;
 }
@@ -104,7 +106,7 @@ body{overflow: hidden;margin: 0;padding: 0;}
     100% { opacity: 1; box-shadow:0px 0px 10px 5px #f2c99a;}
 }
 .electric{width:112px;height:15px;background: orange;display: block;margin:5px auto;}
-.pecent_num{position: absolute;top:150px;left:50px;font-size:30px;color: #fff;font-style: normal; }
+.pecent_num{position: absolute;top:150px;left:50px;font-size:30px;color: #fff;font-style: normal; z-index: 10000}
 .bg_box{width: 100%;height: 100%;overflow: hidden;position: absolute;z-index: 1000;}
 .bg_box	img{width: 100%;height: 100%;display: block;}
 /* 第三页 */
