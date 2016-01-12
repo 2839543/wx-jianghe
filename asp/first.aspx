@@ -29,19 +29,17 @@
 			
 		</div>
     </div>
-<!--
 <script>
-    var oBtn = document.getElementById('start-btn');
-    var oImg = document.getElementById('star-img');
-    oBtn.addEventListener('touchstart', function () {
-        oImg.src = 'images/strat_btn_click.jpg';
-    });
+	// var oBtn=document.getElementById('start-btn');
+	// var oImg=document.getElementById('star-img');
+	// 	oBtn.addEventListener('touchstart',function(){
+	// 		oImg.src='images/strat_btn_click.jpg';
+	// 	});
 
-    oBtn.addEventListener('touchend', function () {
-        oImg.src = 'images/start_btn.jpg';
-    });
+	// 	oBtn.addEventListener('touchend',function(){
+	// 		oImg.src='images/start_btn.jpg';
+	// 	});
 </script>
-        -->
 <script type="text/javascript" src="js/MetaHandler.js"></script>
  
  </form>

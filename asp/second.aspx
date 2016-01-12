@@ -39,8 +39,9 @@
         <asp:ScriptManager ID="ScriptManager1" runat="Server" ></asp:ScriptManager><!--必须包含这个控件，否则UpdatePanel无法使用-->  
     </div>  
 
-    <div class="battery_box">
-        <img src="images/battery.png" alt="">
+	<div class="battery_box" id="battery_shine">
+    	<img src="images/battery.png" alt="" id="pic" data-status='0'>
+
         
           <em class="pecent_num"> <asp:UpdatePanel ID="UpdatePanel1" runat="server">  
                 <ContentTemplate>
@@ -81,6 +82,7 @@
     }
 
 </script>
+<script type="text/javascript" src="js/zepto.js"></script>
   <script type="text/javascript">
    var oSpan=document.getElementById('span1');
     var a=90; // 角度
@@ -101,6 +103,8 @@
     var spantimer=null;
     var sourceTimer1=null;
     var sourceTimer2=null;
+    var addtwinkletimer=null;
+    var removetwinkletimer=null;
 //手指滑动
   var oImg=document.getElementById('img');
   // var ocolorcir=document.getElementById('colorcir');
@@ -121,6 +125,8 @@
       clearInterval(spantimer);
       clearTimeout(sourceTimer1);
       clearTimeout(sourceTimer2);
+	  clearTimeout(addtwinkletimer);
+      clearTimeout(removetwinkletimer);
       imgdeg+=720;
       console.log(imgdeg)
       oImg.style['-webkit-transform']='rotate('+imgdeg+'deg)';
@@ -184,24 +190,6 @@
           timedCount();
 
       }, 1500);
-
-      /*
-          var oEbtn=document.getElementById('electric_btn');
-          var aSpan=document.getElementsByTagName('span');
-          function add(){
-              
-              for(var i=0;i<aSpan.length;i++){
-                  
-                  if(aSpan[i].className==""){
-                      aSpan[i].className='electric';
-                      
-                      console.log(aSpan[i].className);
-                  }
-              }
-          }
-          add();
-      */
-
       function clearall() {
 
           for (var i = 0; i < aSpan.length; i++) {
@@ -213,14 +201,35 @@
               }
           }
       }
-      function timedCount() {
+	  
+	  function timedCount() {
           // alert("timecount->"+_percent);
           document.getElementById("l_percent").innerHTML = "timedCount->" + _percent; 
             
           //  setTimeout("timedCount()", 3000);
       }
+	  
+	 //电池内部电量变化
+	 addtwinkle=function(){
+      for(var i=0;i<spanLength;i++){
+        $('.electric_box span').eq(i).addClass('twinkleName');
+      }
+    }
+    removetwinkle=function(){
+      for(var i=0;i<spanLength;i++){
+        $('.electric_box span').eq(i).removeClass('twinkleName');
+      } 
+    }
 
+    addtwinkletimer=setTimeout(function(){
+      addtwinkle();
+      removetwinkletimer=setTimeout(function(){
+        removetwinkle()
+      },1000);
+    },20)
   });
+
+
 </script>
  <script>
   	window.onload=function(){
@@ -228,6 +237,9 @@
 
   	}
   </script>
+<script>
+
+</script>
 <script type="text/javascript" src="js/MetaHandler.js"></script>
 </body>
 </html>

@@ -60,6 +60,7 @@
   }
 
 </script>
+<script type="text/javascript" src="js/zepto.js"></script>
   <script type="text/javascript">
    var oSpan=document.getElementById('span1');
     var a=90; // 角度
@@ -78,6 +79,10 @@
     var electtop=null;
     var electbottom=null;
     var spantimer=null;
+    var sourceTimer1=null;
+    var sourceTimer2=null;
+    var addtwinkletimer=null;
+    var removetwinkletimer=null;
 //手指滑动
   var oImg=document.getElementById('img');
   // var ocolorcir=document.getElementById('colorcir');
@@ -96,6 +101,10 @@
     clearTimeout(electtop);
     clearTimeout(electbottom);
     clearInterval(spantimer);
+    clearTimeout(sourceTimer1);
+    clearTimeout(sourceTimer2);
+    clearTimeout(addtwinkletimer);
+    clearTimeout(removetwinkletimer);
     imgdeg+=720;
     console.log(imgdeg)
     oImg.style['-webkit-transform']='rotate('+imgdeg+'deg)';
@@ -103,12 +112,18 @@
     //电池变化
     electtop=setTimeout(function change(){
         oChangeImg.src = 'images/shine_battery.png';
-
+        sourceTimer1=setTimeout(function(){
+        	oChangeImg.src = 'images/battery.png';
+        },1000);
     },500);
   //电流图片
     electbottom=setTimeout(function(){
       oChangeImg1.src='images/line_before.png';
+        sourceTimer2=setTimeout(function(){
+        	oChangeImg1.src ='images/line_after.png';
+        },1000);
     },500);
+
  //改变电量变化
   	var oDivelect=document.getElementById('electric_btn')
   	var aSpan=oDivelect.getElementsByTagName('span');   // 获取标签为span的数组
@@ -122,10 +137,10 @@
   		if(index >= spanLength - max )                                    //如果游标大于等于0给位于aSpan数组第Index处的span对象className赋值
   		{
 
-  			var objSpan=aSpan[index];                   //得到要赋值的span对象
+  			// var objSpan=aSpan[index];                   //得到要赋值的span对象
 
-  			objSpan.className='electric';              //给该span的className赋值
-
+  			// objSpan.className='electric';              //给该span的className赋值
+        $('.electric_box span').eq(index).addClass('electric')
   			index--;								  //游标减一，给下一次跳进这个函数的下一个span赋值
   		}
   		else
@@ -138,24 +153,6 @@
   		}
 
   	},2000);
-
-  	/*
-  		var oEbtn=document.getElementById('electric_btn');
-  		var aSpan=document.getElementsByTagName('span');
-  		function add(){
-
-  			for(var i=0;i<aSpan.length;i++){
-
-  				if(aSpan[i].className==""){
-  					aSpan[i].className='electric';
-
-  					console.log(aSpan[i].className);
-  				}
-  			}
-  		}
-  		add();
-  	*/
-
   	function clearall(){
 
   			for(var i=0;i<aSpan.length;i++){
@@ -167,6 +164,24 @@
   				}
   			}
   		}
+    //电池内部电量变化
+    addtwinkle=function(){
+      for(var i=0;i<spanLength;i++){
+        $('.electric_box span').eq(i).addClass('twinkleName');
+      }
+    }
+    removetwinkle=function(){
+      for(var i=0;i<spanLength;i++){
+        $('.electric_box span').eq(i).removeClass('twinkleName');
+      } 
+    }
+
+    addtwinkletimer=setTimeout(function(){
+      addtwinkle();
+      removetwinkletimer=setTimeout(function(){
+        removetwinkle()
+      },1000);
+    },500)
   });
 
   // function drowLine(){
