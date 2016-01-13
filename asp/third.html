@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-type" content="text/html; charset=utf-8">
@@ -10,28 +10,31 @@
 <link href="css/common.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/style.css"/>
 </head>
-<body>
-    <div class="index_container" id="bg3_click">
-    	<img src="images/bg3.jpg" alt="" class="img_bg1" id="bg">
-    </div>
-<script>	
-	var oBg3=document.getElementById('bg3_click');
-	var oBgimg=document.getElementById('bg');
-	var imgnum=4;
-	var imgTimer=null;
-	oBg3.onclick=function(){
-		clearInterval(imgTimer);
-		oBgimg.src='images/bg3.jpg'	
-		imgTimer=setInterval(function(){
-			oBgimg.src='images/bg'+imgnum+'.jpg';
-			imgnum--;
-			if(imgnum==2){
-				imgnum=4;
-			}
-		},1000)
-		
-	}
+<body> 
+<script language =javascript >
+ var curIndex=0;
+ //时间间隔 单位毫秒
+ var timeInterval=700;
+ var arr=new Array();
+ arr[0]="images/bg3.jpg";
+ arr[1]="images/bg4.jpg"; 
+setInterval(changeImg,timeInterval);
+function changeImg()
+{
+    var obj=document.getElementById("obj");
+    if (curIndex==arr.length-1) 
+    {
+        curIndex=0;
+    }
+    else
+    {
+        curIndex+=1;
+   }
+    obj.src=arr[curIndex];
+}
 </script>
+
+<img id=obj src ="images/bg3.jpg" border =0 />
 <script type="text/javascript" src="js/MetaHandler.js"></script>
 </body>
 </html>
