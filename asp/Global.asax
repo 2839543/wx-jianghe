@@ -51,17 +51,21 @@
        // new Time_Task().countNum();
         int _percent = Sqlite_Battery_T.GetPercent();
         
-        if(GlobalConf.HALFWAY_PAUSE){
+        if(GlobalConf.START_VOTE == false){
+        //关闭状态的电池计数 百分值设置 0 
+            GlobalConf.percent = 0;
+            return;
+        }
+        
+        if(GlobalConf.HALFWAY_PAUSE == true){
         //中途暂停百分比增长 ,获取暂停百分比的值
             int p_percent = Sqlite_Task_T.getHalfwayPause();
             
-            //暂停
+            //超过暂停暂停值（66%）要仅仅显示66%
             if(p_percent < _percent ){
                 GlobalConf.percent = p_percent;
                 return; 
-            }
-            
-                
+            }   
         } 
         
         //正常百分比增长的值

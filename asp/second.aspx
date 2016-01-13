@@ -28,7 +28,7 @@
 		<div class="otercir_bor"></div>
 		<div class="inercir_bor"></div>
 		<div class="rotate" id='box'>
-			<img id="img" src="images/outer_circle.png" class="outer_circle" style="transition:2s all ease;"/>
+			<img id="img" src="images/outer_circle.png" class="outer_circle" style="-webkit-transition:2s all ease;"/>
 			<img src="images/color_circle.png" class="color_circle icon-play" id="img2" alt="">
 			<span id="btn" class="click"><img id="middlecir" src="images/inner_btn.png" alt="" > </span>
 			<span class="elect" id='span1'></span>
@@ -228,7 +228,7 @@
       },1000);
     },20)
   });
-
+  window.ontouchstart = function(e) { e.preventDefault(); };
 
 </script>
  <script>

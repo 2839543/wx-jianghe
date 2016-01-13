@@ -32,6 +32,21 @@
             <hr />
             <asp:Label ID="Label3" runat="server" Text="年会上线功能区"></asp:Label>
             <br />
+            <br />
+            <asp:Label ID="Label5" runat="server" Font-Size="XX-Large" style="text-align: center" Text="︾启动从0开始计数︾" Width="100%"></asp:Label>
+            <br />
+
+
+
+
+
+            <asp:Button ID="btn_start" runat="server" OnClientClick="return confirm('Are u sure?');" OnClick="btn_start_Click" Text="点击开始投票计数" Height="250px" Width="100%" BackColor="Red" Font-Size="XX-Large"/>
+            <br />
+            <br />
+            <br />
+            <asp:Label ID="Label6" runat="server" Font-Size="XX-Large" style="text-align: center" Text="︾66%计数管理︾" Width="100%"></asp:Label>
+            <br />
+            <br />
     </div>  
     <table style=" position: absolute; margin-left:10px; margin-right:200px; margin-top:0px; width:1282px; height:212px; top: 10px; left: 10px;">  
         <tr>  
@@ -61,6 +76,7 @@
             <asp:Button ID="Button4" runat="server" OnClientClick="return confirm('Are u sure?');" OnClick="Button4_Click" Text="点击切换为正常投票计数" Height="250px" Width="100%" BackColor="Red" Font-Size="XX-Large"/>
         <br />
         <br />
+        <asp:Label ID="Label7" runat="server" Font-Size="XX-Large" style="text-align: center" Text="︾启用烟花页面管理︾" Width="100%"></asp:Label>
         <br />
 
 
@@ -75,8 +91,7 @@
         <p>
             测试用工具区</p>
         <p>
-            <asp:Button ID="Button3" runat="server" OnClientClick="return confirm('Are u sure?');" OnClick="Button3_Click" Text="切换到电池充电页面，屏蔽页面3" Height="250px" Width="100%" BackColor="#66FF33" Font-Size="XX-Large" Visible="False"/>
-        </p>
+            &nbsp;</p>
     </form>
     <script type="text/javascript" src="js/MetaHandler.js"></script>
 </body>
