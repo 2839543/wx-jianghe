@@ -21,7 +21,7 @@
 	<div class="header_go"></div>
 	<div class="description">
 		<p>操作说明</p>
-		<p>旋动下方圆形按钮，从左向右顺时针旋转，即可为江河充电加油</p>
+		<p>快速点击下方圆形按钮 即可为江河充电加油</p>
 	</div>
 	<div class="circleBtn">
 		<img src="images/line_after.png" alt="" class="line_before" id="pics" data-stade='0'>
