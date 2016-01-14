@@ -1,7 +1,7 @@
 /* 第一页 */
 body{overflow: hidden;margin: 0;padding: 0;}
-.index_container{position:absolute; width:100%; height:100%; z-index:-1}
-.img_bg1{position:fixed;width: 100%;height: 100%;}
+.index_container{position:absolute; width:100%; height:100%; z-index:-1;overflow: hidden;}
+.img_bg1{position:absolute;width: 100%;height: 100%;}
 .people_box{position:absolute;top: 615px;left: 20px;width:669px;height:301px;background:url(../images/people.png) no-repeat center;
 	-webkit-animation:fadeInLeftPeople 3s ease both;}
 	@-webkit-keyframes fadeInLeftPeople{
@@ -15,17 +15,7 @@ body{overflow: hidden;margin: 0;padding: 0;}
 	-webkit-transform:translateX(-600px)}
 	100%{opacity:1;
 	-webkit-transform:translateX(0)}}
-.start{position: absolute;top: 925px;left:285px; border:1px solid #fff; border-radius:50%; text-align:center; cursor:pointer; box-shadow:0 10px 20px rgba(0,0,0,0); background-image: -webkit-gradient(linear, left top, left bottom, from(#6cc3fe), to(#fff));
-    -webkit-animation-timing-function: ease-in-out;
-    -webkit-animation-name: breathe;
-    -webkit-animation-duration: 2700ms;
-    -webkit-animation-iteration-count: infinite;
-    -webkit-animation-direction: alternate;
-}
-@-webkit-keyframes breathe {
-    0% { opacity: .2; box-shadow:0 1px 2px rgba(59,235,235,1);}
-    100% { opacity: 1; border:1px solid rgba(59,235,235,255); box-shadow:0px 0px 30px 5px rgba(255,235,235,255);}
-}
+.start{position: absolute;top: 900px;left:285px;}
 /* 第二页 */
 .secound_container{position:absolute; width:100%; height:100%; z-index:-1}
 .img_bg2{position:fixed;width: 100%;height: 100%;}
@@ -39,10 +29,10 @@ body{overflow: hidden;margin: 0;padding: 0;}
 .circleBtn{position: absolute;left:183px;top:332px;/* position: relative; */background: transparent;height: 578px;width: 368px;margin:220px auto;/* border-bottom-right-radius: 200px;border-bottom-left-radius: 200px;border-bottom: 5px dashed #fff;border-left:5px dashed #fff; */}
 .line_before{position: absolute;left:-2px;top:16px;height: 100%;width: 100%}
 .outer_circle{position: relative;}
-.rotate{position: absolute;top:213px;width: 368px;height: 368px}
+.rotate{position: absolute;top:242px;width: 368px;height: 368px;left: -5px;}
 .rotate .outer_circle{position: absolute;left: 20px}
-.color_circle{position: absolute;left:60px;top:49px;}
-.rotate .click{position: absolute;left:104px;top:91px;}
+.color_circle{position: absolute;left:81px;top:62px;}
+.rotate .click{position: absolute;left:107px;top:90px;}
 .elect{display: block;height: 20px;width:8px;background:#f39b00;position: absolute;right: -10px;top:50%;margin-top: -10px;opacity: 0;}
 .icon-play {
   -moz-animation: spin 2s infinite linear;
@@ -94,7 +84,7 @@ body{overflow: hidden;margin: 0;padding: 0;}
 /* 电池充电 */
 .battery_box{position: absolute;left:123px;top:300px;}
 .electric_box{position: absolute;left:10px;top:33px;}
-.electric_box span{display: block;width:112px;height:15px;margin: 5px auto;border:1px solid #fff; border-radius:5px; text-align:center; cursor:pointer; box-shadow:0 10px 20px rgba(0,0,0,0); background:#f39b00);
+.electric_box span{display: block;width:112px;height:15px;margin: 5px auto;border:1px solid #fff; border-radius:5px; text-align:center; cursor:pointer; background:#f39b00);
 /*    -webkit-animation-timing-function: ease-in-out;
     -webkit-animation-name: twinkle;
     -webkit-animation-duration: 1000ms;
@@ -116,15 +106,4 @@ body{overflow: hidden;margin: 0;padding: 0;}
 .city {width: 100%; position: fixed; bottom: 50px;z-index: 100;}
 .city img { width: 100%;}
 #cas { width: 100%;}
-.twinkleName{
-    -webkit-animation-timing-function: ease-in-out;
-    -webkit-animation-name: twinkle;
-    -webkit-animation-duration: 1000ms;
-    -webkit-animation-iteration-count: infinite;
-    -webkit-animation-direction: alternate;
-}
-@-webkit-keyframes twinkle {
-    0% { opacity: .2; box-shadow:0 1px 2px #f39b00;}
-    50% { opacity: 1; box-shadow:0px 0px 10px 5px #f2c99a;}
-    100% { opacity: .2; box-shadow:0 1px 2px #f39b00;}
-}
+.twinkleName{box-shadow:0px 0px 10px 5px #f2c99a;}

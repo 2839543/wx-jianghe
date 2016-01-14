@@ -13,7 +13,13 @@
 
 </style>
 </head>
-<body style="background:#070d33;"> 
+<body>
+
+<div class="index_container" id="bg3_click">
+<img src="images/company_theme.png" alt="" style="position:absolute;top:15px;left:10px;z-index:10000;width:100%;border:0;">
+    <img id='obj' class="img_bg1" src ="images/bg3.jpg" border ='0' />
+
+</div> 
 <script language =javascript >
  var curIndex=0;
  //时间间隔 单位毫秒
@@ -36,8 +42,9 @@ function changeImg()
     obj.src=arr[curIndex];
 }
 </script>
-
-<img id=obj src ="images/bg3.jpg" border =0 />
+<script>
+      window.ontouchstart = function(e) { e.preventDefault(); };
+</script>
 <script type="text/javascript" src="js/MetaHandler.js"></script>
 </body>
 </html>

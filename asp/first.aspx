@@ -25,20 +25,20 @@
 			<!-- <img src="images/company_logo.jpg" alt=""> -->
 		</div>
 		<div class="start" id="start-btn">
-            <a href="second.aspx"><img src="images/start_btn.png" alt="" id="star-img"></a>
-			
+			<img src="images/sbtn1.png" alt="" id="star-img">
 		</div>
     </div>
 <script>
-	// var oBtn=document.getElementById('start-btn');
-	// var oImg=document.getElementById('star-img');
-	// 	oBtn.addEventListener('touchstart',function(){
-	// 		oImg.src='images/strat_btn_click.jpg';
-	// 	});
-
-	// 	oBtn.addEventListener('touchend',function(){
-	// 		oImg.src='images/start_btn.jpg';
-	// 	});
+	var oImg=document.getElementById('star-img');
+		var i=1;
+		setInterval(function(){
+			i++;
+			oImg.src='images/sbtn'+i+'.png';
+			if(i==2){
+				i=0;
+			}
+		},500);
+	  window.ontouchstart = function(e) { e.preventDefault(); };
 </script>
 <script type="text/javascript" src="js/MetaHandler.js"></script>
  

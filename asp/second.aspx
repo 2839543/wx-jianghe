@@ -21,7 +21,7 @@
 	<div class="header_go"></div>
 	<div class="description">
 		<p>操作说明</p>
-		<p>快速点击下方圆形按钮 即可为江河充电加油</p>
+		<p>点击充电，即可为江河充电加油</p>
 	</div>
 	<div class="circleBtn">
 		<img src="images/line_after.png" alt="" class="line_before" id="pics" data-stade='0'>
@@ -169,7 +169,8 @@
               // var objSpan=aSpan[index];                   //得到要赋值的span对象
 
   			// objSpan.className='electric';              //给该span的className赋值
-        $('.electric_box span').eq(index).addClass('electric')
+          $('.electric_box span').eq(index).addClass('electric');
+          $('.electric_box span').eq(index).addClass('twinkleName');
               index--;								  //游标减一，给下一次跳进这个函数的下一个span赋值	
           } else if (_percent >= 100) {
                 
@@ -210,21 +211,20 @@
       }
 	  
 	 //电池内部电量变化
-	 addtwinkle=function(){
-      for(var i=0;i<spanLength;i++){
-        $('.electric_box span').eq(i).addClass('twinkleName');
-      }
-    }
-    removetwinkle=function(){
-      for(var i=0;i<spanLength;i++){
-        $('.electric_box span').eq(i).removeClass('twinkleName');
-      } 
-    }
+   // addtwinkle=function(){
+    //   for(var i=0;i<spanLength;i++){
+    //     $('.electric_box span').eq(i).addClass('twinkleName');
+    //   }
+    // }
+    // removetwinkle=function(){
+    //   for(var i=0;i<spanLength;i++){
+    //     $('.electric_box span').eq(i).removeClass('twinkleName');
+    //   } 
+	// }
 
     addtwinkletimer=setTimeout(function(){
-      addtwinkle();
       removetwinkletimer=setTimeout(function(){
-        removetwinkle()
+        // removetwinkle()
       },1000);
     },20)
   });
