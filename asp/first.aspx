@@ -25,7 +25,7 @@
 			<!-- <img src="images/company_logo.jpg" alt=""> -->
 		</div>
 		<div class="start" id="start-btn">
-			<img src="images/sbtn1.png" alt="" id="star-img">
+			<a href="second.aspx"><img src="images/sbtn1.png" alt="" id="star-img"></a>
 		</div>
     </div>
 <script>
