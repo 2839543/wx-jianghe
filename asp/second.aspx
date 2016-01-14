@@ -159,17 +159,17 @@
 
       index = 9;
          
-      setInterval(function(){
+      spantimer=setInterval(function(){
           _percent = document.getElementById('result').textContent;
           max = Math.ceil(_percent / 10);
              
           if (index >= 10 - max)                                    //如果游标大于等于0给位于aSpan数组第Index处的span对象className赋值
           {
 
-              var objSpan = aSpan[index];                   //得到要赋值的span对象
+              // var objSpan=aSpan[index];                   //得到要赋值的span对象
 
-              objSpan.className = 'electric';              //给该span的className赋值
-
+  			// objSpan.className='electric';              //给该span的className赋值
+        $('.electric_box span').eq(index).addClass('electric')
               index--;								  //游标减一，给下一次跳进这个函数的下一个span赋值	
           } else if (_percent >= 100) {
                 
