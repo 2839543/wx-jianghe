@@ -1,0 +1,42 @@
+@charset "UTF-8";
+/**
+ *
+ * @authors zhangjingyun (you@example.org)
+ * @date    2016-01-15 22:14:40
+ * @version $Id$
+ */
+ body{margin:0;padding:0;height: 100%}
+.index_container{ width:100%; height:100%; z-index:-1;overflow: hidden;}
+.img_bg1{position:absolute;width: 100%;height:100%;}
+.people_box{position:absolute;top: 615px;left: 20px;width:669px;height:301px;background:url(../images/people.png) no-repeat center;
+  -webkit-animation:fadeInLeftPeople 3s ease both;}
+  @-webkit-keyframes fadeInLeftPeople{
+  0%{opacity:0;-webkit-transform:translateX(-600px)}
+  100%{opacity:1;
+  -webkit-transform:translateX(0)}}
+.company_logo{position:absolute;top: 730px;left:3px;width:708px;height:145px;background:url(../images/company_logo.png) no-repeat center;
+  -webkit-animation:fadeInLeftLogo 3s 2s ease both;}
+  @-webkit-keyframes fadeInLeftLogo{
+  0%{opacity:0;
+  -webkit-transform:translateX(-600px)}
+  100%{opacity:1;
+  -webkit-transform:translateX(0)}}
+.start{position: absolute;top: 900px;left:50%;margin-left: -115px}
+/*第三页*/
+ .thrbg{position: absolute;z-index;1}
+.three_container {width: 100%;height: 100%;z-index: 100;position: absolute;}
+.three_container img { width: 100%;height: 100%}
+#cas { width: 100%;}
+.twinkleName{
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-name: twinkle;
+    -webkit-animation-duration: 1000ms;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-direction: alternate;
+}
+@-webkit-keyframes twinkle {
+    0% { opacity: .2; box-shadow:0 1px 2px #f39b00;}
+    50% { opacity: 1; box-shadow:0px 0px 10px 5px #f2c99a;}
+    100% { opacity: .2; box-shadow:0 1px 2px #f39b00;}
+}
+

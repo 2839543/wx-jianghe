@@ -6,26 +6,29 @@
 <meta content="yes" name="apple-mobile-web-app-capable"/>
 <meta content="black" name="apple-mobile-web-app-status-bar-style" />
 <meta content="telephone=no,email=no" name="format-detection" />
-<title>江河2016年会</title>
+<title>第三页</title>
 <link href="css/common.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<link rel="stylesheet" type="text/css" href="css/firstth.css"/>
 <style>
 
 </style>
 </head>
-<body style="background:#070d33;"> 
+<body>
+<div class="three_container" id="bg3_click">
+    <img id='obj' class="img_bg1" src ="images/bg3.jpg" border ='0' />
+</div>
 <script language =javascript >
  var curIndex=0;
  //时间间隔 单位毫秒
  var timeInterval=700;
  var arr=new Array();
  arr[0]="images/bg3.jpg";
- arr[1]="images/bg4.jpg"; 
+ arr[1]="images/bg4.jpg";
 setInterval(changeImg,timeInterval);
 function changeImg()
 {
     var obj=document.getElementById("obj");
-    if (curIndex==arr.length-1) 
+    if (curIndex==arr.length-1)
     {
         curIndex=0;
     }
@@ -36,8 +39,9 @@ function changeImg()
     obj.src=arr[curIndex];
 }
 </script>
-
-<img id=obj src ="images/bg3.jpg" border =0 />
+<script>
+      window.ontouchstart = function(e) { e.preventDefault(); };
+</script>
 <script type="text/javascript" src="js/MetaHandler.js"></script>
 </body>
 </html>

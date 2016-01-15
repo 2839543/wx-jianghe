@@ -7,23 +7,22 @@
 <meta content="yes" name="apple-mobile-web-app-capable"/>
 <meta content="black" name="apple-mobile-web-app-status-bar-style" />
 <meta content="telephone=no,email=no" name="format-detection" />
-<title>江河向前冲</title>
+<title>江河2016年会</title>
 <link href="css/common.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="css/style.css"/>
-<body>
+<link rel="stylesheet" type="text/css" href="css/second.css"/>
+<body >
      <form id="form2" runat="server">
     <div class="secound_container">
 	<img src="images/bg_2.jpg" alt="" class="img_bg2">
 	<div class="header_go"></div>
 	<div class="description">
 		<p>操作说明</p>
-		<p>快速点击白色按纽，即可为江河充电加油</p>
+		<p>点击充电，即可为江河充电加油</p>
 	</div>
 	<div class="circleBtn">
     <div class="otercir_bor"></div>
     <div class="inercir_bor"></div>
 		<img src="images/line_after.png" alt="" class="line_before" id="pics" data-stade='0'>
-
 		<div class="rotate" id='box'>
  			<div style="position: relative;width=332px;height: 332px">
 			<img id="img" src="images/outer_circle.png" class="outer_circle" style="-webkit-transition:2s all ease;"/>
@@ -60,70 +59,44 @@
 			<span></span>
 	    	<span></span>
 			<span></span>
-    	</div>	
+        </div>	
     </div>
-
-    
-   
 </div> 
          </form>
-<script>
-    window.onload = function () {
-        var oBtn = document.getElementById('btn');
-        var oImg2 = document.getElementById('img2');
-        oBtn.onclick = function () {
-            oImg.className = 'icon-play';
 
-            setTimeout(function () {
-                oImg.className = ' ';
-            }, 5000);
-        }
-    }
+    <script type="text/javascript" >  
+ window.onload=function(){
+      var oSpan=document.getElementById('span1');
+      // var a=90; // 角度
+      var oDiv=document.getElementById('box');
+       var oChangeImg = document.getElementById('pic');
+      var oChangeImg1 = document.getElementById('pics');
+      var middlecirTimer=null;
+      var electtop=null;
+      var electbottom=null;
+      var spantimer=null;
+      var sourceTimer1=null;
+      var sourceTimer2=null;
+      var addtwinkletimer=null;
+      var removetwinkletimer=null;
+      var falg=true;
+  //手指滑动
+    var oImg=document.getElementById('img');
+    // var ocolorcir=document.getElementById('colorcir');
+    var imgdeg=0; 
 
-</script>
-<script type="text/javascript" src="js/zepto.js"></script>
-  <script type="text/javascript">
-   var oSpan=document.getElementById('span1');
-    var a=90; // 角度
-    var oDiv=document.getElementById('box');
-     var oChangeImg = document.getElementById('pic');
-    var oChangeImg1 = document.getElementById('pics');
-    var sourceLeft=oSpan.offsetLeft;
-    var sourceTop=oSpan.offsetTop;
-    var R=oDiv.offsetWidth/2;
-    var Bigtimer=null;
-    var smalltimer=null;
-    var b=160;
-    var c=0;
-    var op=0;
-    var middlecirTimer=null;
-    var electtop=null;
-    var electbottom=null;
-    var spantimer=null;
-    var sourceTimer1=null;
-    var sourceTimer2=null;
-    var addtwinkletimer=null;
-    var removetwinkletimer=null;
-//手指滑动
-  var oImg=document.getElementById('img');
-  // var ocolorcir=document.getElementById('colorcir');
-  var imgdeg=0;
-  oImg.addEventListener("touchmove", function(){
-   clearInterval(middlecirTimer);
+    window.setInterval(function () { abc() }, 2000);
+    
 
-   imgdeg+=10;
-   console.log(imgdeg);
-   oImg.style['-webkit-transform']='rotate('+imgdeg+'deg)';
-  });
-//手指点击中间部分
-  var omiddlecir=document.getElementById('middlecir');
-  omiddlecir.addEventListener('touchstart',function(){
-      clearInterval(Bigtimer);
+  //手指点击中间部分
+    var omiddlecir=document.getElementById('middlecir');
+      omiddlecir.addEventListener('touchstart',function(e){
+      e.preventDefault();
       clearTimeout(electtop);
       clearTimeout(electbottom);
-	  clearTimeout(sourceTimer1);
+      clearTimeout(sourceTimer1);
       clearTimeout(sourceTimer2);
-	  clearTimeout(addtwinkletimer);
+      clearTimeout(addtwinkletimer);
       clearTimeout(removetwinkletimer);
       imgdeg+=720;
       console.log(imgdeg)
@@ -133,117 +106,91 @@
       electtop=setTimeout(function change(){
           oChangeImg.src = 'images/shine_battery.png';
           sourceTimer1=setTimeout(function(){
-              oChangeImg.src = 'images/battery.png';
+            oChangeImg.src = 'images/battery.png';
           },50);
       },25);
-      //电流图片
+    //电流图片
       electbottom=setTimeout(function(){
-          oChangeImg1.src='images/line_before.png';
+        oChangeImg1.src='images/line_before.png';
           sourceTimer2=setTimeout(function(){
-              oChangeImg1.src ='images/line_after.png';
+            oChangeImg1.src ='images/line_after.png';
           },50);
       },25);
-      //改变电量变化
-      var oDivelect=document.getElementById('electric_btn')
-      var aSpan=oDivelect.getElementsByTagName('span');   // 获取标签为span的数组
-      var spanLength=aSpan.length;                       //获取数组长度
-      var index=spanLength-1;							   // 游标,因为数组是从0开始  这里减去1
 
-      var _percent = 0;
-      var max = 3;
-
-      _percent = '<%= percent %>';
        
+      //电池内部电量变化
+      addtwinkle=function(){
+        for(var i=0;i<spanLength;i++){
+          $('.electric_box span').eq(i).addClass('twinkleName');
+        }
+      }
+      removetwinkle=function(){
+        for(var i=0;i<spanLength;i++){
+          $('.electric_box span').eq(i).removeClass('twinkleName');
+        }
+      }
 
-      index = 9;
+      addtwinkletimer=setTimeout(function(){
+        addtwinkle();
+        removetwinkletimer=setTimeout(function(){
+          removetwinkle()
+        },1000);
+      },500)
+    });
+ };
+
+ //改变电量变化
+ var oDivelect = document.getElementById('electric_btn')
+ var aSpan = oDivelect.getElementsByTagName('span');   // 获取标签为span的数组
+ var spanLength = aSpan.length;                       //获取数组长度
+ var index = spanLength - 1;                // 游标,因为数组是从0开始  这里减去1
+ var _percent = '<%= percent %>';
+ var max = 3; 
+ 
+ function abc() { 
+    // spantimer = setInterval(function () {
+         var electlenght = $('.electric').length
+         console.log(electlenght);
          
-      spantimer=setInterval(function(){
-          
-	  	  var electlenght=$('.electric').length
-          if(electlenght==max){
-            clearInterval(spantimer);
-          }
-          max = Math.ceil(_percent / 10);
-             
-		  
-          if (index >= 10 - max)                                    //如果游标大于等于0给位于aSpan数组第Index处的span对象className赋值
-          {
+     _percent = document.getElementById('result').textContent;
+            max = Math.ceil(_percent / 10);
 
-              // var objSpan=aSpan[index];                   //得到要赋值的span对象
+           // alert( "percent->"+_percent +" index->" + index + "max->" + max + " spanlength->" + spanLength + " electlenght->"+ electlenght );
+            if (index >= spanLength - max) {
+                $('.electric_box span').eq(index).addClass('electric');
+                index--;                  //游标减一，给下一次跳进这个函数的下一个span赋值
+            } else if (electlenght == max) {
+                // falg = true;
+                //alert("in chongdianwancheng");
+                //addtwinkle()
+                // alert('充电完成')
+                //clearInterval(spantimer);
+                index = spanLength - 1;
+                clearall();
+            } else { 
+                index = spanLength - 1;
+                clearall();
 
-  			// objSpan.className='electric';              //给该span的className赋值
-          $('.electric_box span').eq(index).addClass('electric');
-              index--;								  //游标减一，给下一次跳进这个函数的下一个span赋值	
-          } else if (_percent >= 100) {
-                
-              document.getElementById('show3').textContent = "完成充电"; 
-              setTimeout(" window.location = 'thrid.html';", 5000);
-               
-          }
-          else {
-              //index = spanLength - 1;
-              index = 9;
-              clearall();
-              //当游标小于0时可以在此处终止计时器,充满电后的处理
-              //alert("hello   world!");
+            }
 
-          }
-          document.getElementById('l_percent').textContent = _percent;
-          document.getElementById('pecent_num').textContent = _percent+ "%";
-          timedCount();
-
-      }, 1000);
-      function clearall() {
-
-          for (var i = 0; i < aSpan.length; i++) {
-
-             	if(aSpan[i].className=="electric"){
-                  aSpan[i].className = '';
-
-                  console.log(aSpan[i].className);
-              }
-          }
-      }
-	  
-	  function timedCount() {
-          // alert("timecount->"+_percent);
-          document.getElementById("l_percent").innerHTML = "timedCount->" + _percent; 
-            
-          //  setTimeout("timedCount()", 3000);
-      }
-	  
-    //电池内部电量变化
-    addtwinkle=function(){
-      for(var i=0;i<spanLength;i++){
-        $('.electric_box span').eq(i).addClass('twinkleName');
-      }
+       // }, 1500);
     }
-    removetwinkle=function(){
-      for(var i=0;i<spanLength;i++){
-        $('.electric_box span').eq(i).removeClass('twinkleName');
-      }
-	}
 
+    function clearall() {
 
-    addtwinkletimer=setTimeout(function(){
-      addtwinkle();
-      removetwinkletimer=setTimeout(function(){
-        removetwinkle()
-      },1000);
-    },500)
-  });
-  window.ontouchstart = function(e) { e.preventDefault(); };
+        for (var i = 0; i < aSpan.length; i++) {
+
+            if (aSpan[i].className == "electric") {
+                aSpan[i].className = '';
+
+                console.log(aSpan[i].className);
+            }
+        }
+    } 
 
 </script>
- <script>
-  	window.onload=function(){
 
-
-  	}
-  </script>
-<script>
-
-</script>
+<script type="text/javascript" src="js/zepto.js"></script>
 <script type="text/javascript" src="js/MetaHandler.js"></script>
 </body>
 </html>

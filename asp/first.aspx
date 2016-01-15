@@ -9,9 +9,9 @@
 <meta content="yes" name="apple-mobile-web-app-capable"/>
 <meta content="black" name="apple-mobile-web-app-status-bar-style" />
 <meta content="telephone=no,email=no" name="format-detection" />
-<title>江河向前冲</title>
+<title>江河2016年会</title>
 <link href="css/common.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<link rel="stylesheet" type="text/css" href="css/firstth.css"/>
 </head>
 <body>
     <form id="form1" runat="server"> 
