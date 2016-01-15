@@ -7,13 +7,9 @@
 <meta content="yes" name="apple-mobile-web-app-capable"/>
 <meta content="black" name="apple-mobile-web-app-status-bar-style" />
 <meta content="telephone=no,email=no" name="format-detection" />
-<title>江河2016年会</title>
+<title>江河向前冲</title>
 <link href="css/common.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="css/style.css"/>   
-<!-- 自动刷新页面 隔10秒刷一次
-<meta http-equiv="refresh" content="10">
- -->     
-</head>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
 <body>
      <form id="form2" runat="server">
     <div class="secound_container">
@@ -21,20 +17,22 @@
 	<div class="header_go"></div>
 	<div class="description">
 		<p>操作说明</p>
-		<p>点击充电，即可为江河充电加油</p>
+		<p>快速点击白色按纽，即可为江河充电加油</p>
 	</div>
 	<div class="circleBtn">
+    <div class="otercir_bor"></div>
+    <div class="inercir_bor"></div>
 		<img src="images/line_after.png" alt="" class="line_before" id="pics" data-stade='0'>
-		<div class="otercir_bor"></div>
-		<div class="inercir_bor"></div>
+
 		<div class="rotate" id='box'>
+ 			<div style="position: relative;width=332px;height: 332px">
 			<img id="img" src="images/outer_circle.png" class="outer_circle" style="-webkit-transition:2s all ease;"/>
 			<img src="images/color_circle.png" class="color_circle icon-play" id="img2" alt="">
 			<span id="btn" class="click"><img id="middlecir" src="images/inner_btn.png" alt="" > </span>
-			<span class="elect" id='span1'></span>
 		</div>
+		<span class="elect" id='span1'></span>
 	</div>
-
+    </div>
     <div>  
         <asp:ScriptManager ID="ScriptManager1" runat="Server" ></asp:ScriptManager><!--必须包含这个控件，否则UpdatePanel无法使用-->  
     </div>  
@@ -47,6 +45,7 @@
                 <ContentTemplate>
             <!--Lable和Timer控件必须都包含在UpdatePanel控件中 -->  
                     <asp:Label ID="result" runat="server" Text="Label">%</asp:Label>  <!--用于显示时间-->  
+                    <asp:Label ID="lbl_none" Text="Label">%</asp:Label> 
                     <asp:Timer ID="Timer1" runat="server" Interval="1000"></asp:Timer><!-- 用于更新时间，每1秒更新一次-->  
                 </ContentTemplate>                  
             </asp:UpdatePanel>     </em>
@@ -122,8 +121,7 @@
       clearInterval(Bigtimer);
       clearTimeout(electtop);
       clearTimeout(electbottom);
-      clearInterval(spantimer);
-      clearTimeout(sourceTimer1);
+	  clearTimeout(sourceTimer1);
       clearTimeout(sourceTimer2);
 	  clearTimeout(addtwinkletimer);
       clearTimeout(removetwinkletimer);
@@ -137,14 +135,14 @@
           sourceTimer1=setTimeout(function(){
               oChangeImg.src = 'images/battery.png';
           },50);
-      },5);
+      },25);
       //电流图片
       electbottom=setTimeout(function(){
           oChangeImg1.src='images/line_before.png';
           sourceTimer2=setTimeout(function(){
               oChangeImg1.src ='images/line_after.png';
           },50);
-      },5);
+      },25);
       //改变电量变化
       var oDivelect=document.getElementById('electric_btn')
       var aSpan=oDivelect.getElementsByTagName('span');   // 获取标签为span的数组
@@ -160,9 +158,14 @@
       index = 9;
          
       spantimer=setInterval(function(){
-          _percent = document.getElementById('result').textContent;
+          
+	  	  var electlenght=$('.electric').length
+          if(electlenght==max){
+            clearInterval(spantimer);
+          }
           max = Math.ceil(_percent / 10);
              
+		  
           if (index >= 10 - max)                                    //如果游标大于等于0给位于aSpan数组第Index处的span对象className赋值
           {
 
@@ -170,7 +173,6 @@
 
   			// objSpan.className='electric';              //给该span的className赋值
           $('.electric_box span').eq(index).addClass('electric');
-          $('.electric_box span').eq(index).addClass('twinkleName');
               index--;								  //游标减一，给下一次跳进这个函数的下一个span赋值	
           } else if (_percent >= 100) {
                 
@@ -190,12 +192,12 @@
           document.getElementById('pecent_num').textContent = _percent+ "%";
           timedCount();
 
-      }, 1500);
+      }, 1000);
       function clearall() {
 
           for (var i = 0; i < aSpan.length; i++) {
 
-              if (aSpan[i].className == "electric") {
+             	if(aSpan[i].className=="electric"){
                   aSpan[i].className = '';
 
                   console.log(aSpan[i].className);
@@ -210,23 +212,25 @@
           //  setTimeout("timedCount()", 3000);
       }
 	  
-	 //电池内部电量变化
-   // addtwinkle=function(){
-    //   for(var i=0;i<spanLength;i++){
-    //     $('.electric_box span').eq(i).addClass('twinkleName');
-    //   }
-    // }
-    // removetwinkle=function(){
-    //   for(var i=0;i<spanLength;i++){
-    //     $('.electric_box span').eq(i).removeClass('twinkleName');
-    //   } 
-	// }
+    //电池内部电量变化
+    addtwinkle=function(){
+      for(var i=0;i<spanLength;i++){
+        $('.electric_box span').eq(i).addClass('twinkleName');
+      }
+    }
+    removetwinkle=function(){
+      for(var i=0;i<spanLength;i++){
+        $('.electric_box span').eq(i).removeClass('twinkleName');
+      }
+	}
+
 
     addtwinkletimer=setTimeout(function(){
+      addtwinkle();
       removetwinkletimer=setTimeout(function(){
-        // removetwinkle()
+        removetwinkle()
       },1000);
-    },20)
+    },500)
   });
   window.ontouchstart = function(e) { e.preventDefault(); };
 

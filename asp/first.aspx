@@ -9,7 +9,7 @@
 <meta content="yes" name="apple-mobile-web-app-capable"/>
 <meta content="black" name="apple-mobile-web-app-status-bar-style" />
 <meta content="telephone=no,email=no" name="format-detection" />
-<title>江河2016年会</title>
+<title>江河向前冲</title>
 <link href="css/common.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/style.css"/>
 </head>
@@ -25,11 +25,12 @@
 			<!-- <img src="images/company_logo.jpg" alt=""> -->
 		</div>
 		<div class="start" id="start-btn">
-			<a href="second.aspx"><img src="images/sbtn1.png" alt="" id="star-img"></a>
+			<img src="images/sbtn1.png" alt="" id="star-img">
 		</div>
     </div>
 <script>
 	var oImg=document.getElementById('star-img');
+    var oDiv=document.getElementById('start-btn');
 		var i=1;
 		setInterval(function(){
 			i++;
@@ -38,7 +39,10 @@
 				i=0;
 			}
 		},500);
-	  window.ontouchstart = function(e) { e.preventDefault(); };
+   oImg.addEventListener('touchstart',function(){
+      window.location.href='second.aspx';
+    });
+	  //window.ontouchstart = function(e) { e.preventDefault(); };
 </script>
 <script type="text/javascript" src="js/MetaHandler.js"></script>
  
