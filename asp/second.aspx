@@ -10,8 +10,8 @@
     <meta content="telephone=no,email=no" name="format-detection" />
     <title>江河向前冲</title>
     <link href="css/common.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/second.css" />
-    <body>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <body style="width:100%;height:100%;overflow:hidden;position:relative;font-size:0;">
         <form id="form2" runat="server">
             <div class="secound_container">
                 <img src="images/bg_2.jpg" alt="" class="img_bg2">
