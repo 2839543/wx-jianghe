@@ -17,7 +17,7 @@
                 <img src="images/bg_2.jpg" alt="" class="img_bg2">
                 <div class="header_go"></div>
                 <div class="description">
-                    <p>操作说明</p>
+                    <p>操作说明:</p>
                     <p>快速点击白色按纽，即可为江河充电加油</p>
                 </div>
                 <div class="circleBtn">

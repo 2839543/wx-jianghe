@@ -9,9 +9,11 @@ public partial class first : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (GlobalConf.VICTORY == true)
-        {
-            Response.Redirect("third.html", false);
-        }  
+
+       //change by hxq 第一页始终显示
+       // if (GlobalConf.VICTORY == true)
+       // {
+       //     Response.Redirect("third.html", false);
+       // }  
     }
 }
