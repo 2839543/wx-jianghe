@@ -18,28 +18,34 @@ public partial class inputPercentInfo : System.Web.UI.Page
         if (GlobalConf.START_VOTE)
         {
             btn_start.BackColor = System.Drawing.Color.GreenYellow;
+            btn_start.Text = "点击停止投票计数";
         }
         else
         {
             btn_start.BackColor = System.Drawing.Color.Red;
+            btn_start.Text = "点击开始投票计数";
         }
 
         if (GlobalConf.HALFWAY_PAUSE)
         {
             Button4.BackColor = System.Drawing.Color.Red;
+            Button4.Text = "点击切换为正常投票计数";
         }
         else
         {
             Button4.BackColor = System.Drawing.Color.GreenYellow;
+            Button4.Text = "点击切换为最高显示66%";
         }
 
         if (GlobalConf.VICTORY)
         {
             Button2.BackColor = System.Drawing.Color.GreenYellow;
+            Button2.Text = "点击切换到电池充电页面，屏蔽页面3 ";
         }
         else
         {
             Button2.BackColor = System.Drawing.Color.Red;
+            Button2.Text = "点击结束电池充电页面，转换至江河3页面";
         }
     }
 
