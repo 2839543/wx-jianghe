@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-type" content="text/html; charset=utf-8">
@@ -8,40 +8,513 @@
 <meta content="telephone=no,email=no" name="format-detection" />
 <title>江河向前冲</title>
 <link href="css/common.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="css/three.css"/>
-<style>
+<link rel="stylesheet" type="text/css" href="css/third.css"/>
+<!-- <style type="text/css">
+	body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+.city {
+    width: 100%;
+    position: fixed;
+    bottom: 50px;
+    z-index: 100;
+}
+.city img {
+    width: 100%;
+}
+#cas {
+    width: 100%;
+}
+-->
+<style type="text/css">
+ #canvas-container {
+  height: 100%;
+	margin: 0 0 0 0;
+	position: relative;
+  width: 100%;
+	z-index: 2;
+	background: url(images/bg_3.jpg) no-repeat;
+	background-size: 100% 100%;
+}
+</style> 
+  <style>
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}table{border-collapse:collapse;border-spacing:0}
 
+</style>
+
+    <style>
+html, body {
+	margin: 0;
+	padding: 0;
+  height: 100%;
+  width:100%;
+  overflow: hidden;
+}
+
+body {
+	background: #171717;
+	color: #999;
+	font: 100%/18px helvetica, arial, sans-serif;
+}
+
+a {
+	color: #2fa1d6;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #fff;
+}
+
+ #canvas-container {
+  height: 100%;
+	margin: 0 0 0 0;
+	position: relative;
+  width: 100%;
+	z-index: 2;
+	background: url(images/bg_3.jpg) no-repeat;
+	background-size: 100% 100%;
+}
+
+canvas {
+	cursor: crosshair;
+	display: block;
+	position: relative;
+	z-index: 3;
+}
+
+canvas:active {
+	cursor: crosshair;
+}
+
+#skyline {
+	background: url(skyline.png) repeat-x 50% 0;
+	bottom: 0;
+	height: 135px;
+	left: 0;
+	position: absolute;
+	width: 100%;
+	z-index: 1;
+}
+
+#mountains1 {
+	background: url(mountains1.png) repeat-x 40% 0;
+	bottom: 0;
+	height: 200px;
+	left: 0;
+	position: absolute;
+	width: 100%;
+	z-index: 1;
+}
+
+#mountains2 {
+	background: url(mountains2.png) repeat-x 30% 0;
+	bottom: 0;
+	height: 250px;
+	left: 0;
+	position: absolute;
+	width: 100%;
+	z-index: 1;
+}
+
+#gui {
+	right: 0;
+	position: fixed;
+	top: 0;
+	z-index: 3;
+}
+</style>
+
+    <script src="prefixfree.min.js"></script>
+
+<style type="text/css">.dg ul{list-style:none;margin:0;padding:0;width:100%;clear:both}.dg.ac{position:fixed;top:0;left:0;right:0;height:0;z-index:0}.dg:not(.ac) .main{overflow:hidden}.dg.main{-webkit-transition:opacity 0.1s linear;-o-transition:opacity 0.1s linear;-moz-transition:opacity 0.1s linear;transition:opacity 0.1s linear}.dg.main.taller-than-window{overflow-y:auto}.dg.main.taller-than-window .close-button{opacity:1;margin-top:-1px;border-top:1px solid #2c2c2c}.dg.main ul.closed .close-button{opacity:1 !important}.dg.main:hover .close-button,.dg.main .close-button.drag{opacity:1}.dg.main .close-button{-webkit-transition:opacity 0.1s linear;-o-transition:opacity 0.1s linear;-moz-transition:opacity 0.1s linear;transition:opacity 0.1s linear;border:0;position:absolute;line-height:19px;height:20px;cursor:pointer;text-align:center;background-color:#000}.dg.main .close-button:hover{background-color:#111}.dg.a{float:right;margin-right:15px;overflow-x:hidden}.dg.a.has-save ul{margin-top:27px}.dg.a.has-save ul.closed{margin-top:0}.dg.a .save-row{position:fixed;top:0;z-index:1002}.dg li{-webkit-transition:height 0.1s ease-out;-o-transition:height 0.1s ease-out;-moz-transition:height 0.1s ease-out;transition:height 0.1s ease-out}.dg li:not(.folder){cursor:auto;height:27px;line-height:27px;overflow:hidden;padding:0 4px 0 5px}.dg li.folder{padding:0;border-left:4px solid rgba(0,0,0,0)}.dg li.title{cursor:pointer;margin-left:-4px}.dg .closed li:not(.title),.dg .closed ul li,.dg .closed ul li > *{height:0;overflow:hidden;border:0}.dg .cr{clear:both;padding-left:3px;height:27px}.dg .property-name{cursor:default;float:left;clear:left;width:40%;overflow:hidden;text-overflow:ellipsis}.dg .c{float:left;width:60%}.dg .c input[type=text]{border:0;margin-top:4px;padding:3px;width:100%;float:right}.dg .has-slider input[type=text]{width:30%;margin-left:0}.dg .slider{float:left;width:66%;margin-left:-5px;margin-right:0;height:19px;margin-top:4px}.dg .slider-fg{height:100%}.dg .c input[type=checkbox]{margin-top:9px}.dg .c select{margin-top:5px}.dg .cr.function,.dg .cr.function .property-name,.dg .cr.function *,.dg .cr.boolean,.dg .cr.boolean *{cursor:pointer}.dg .selector{display:none;position:absolute;margin-left:-9px;margin-top:23px;z-index:10}.dg .c:hover .selector,.dg .selector.drag{display:block}.dg li.save-row{padding:0}.dg li.save-row .button{display:inline-block;padding:0px 6px}.dg.dialogue{background-color:#222;width:460px;padding:15px;font-size:13px;line-height:15px}#dg-new-constructor{padding:10px;color:#222;font-family:Monaco, monospace;font-size:10px;border:0;resize:none;box-shadow:inset 1px 1px 1px #888;word-wrap:break-word;margin:12px 0;display:block;width:440px;overflow-y:scroll;height:100px;position:relative}#dg-local-explain{display:none;font-size:11px;line-height:17px;border-radius:3px;background-color:#333;padding:8px;margin-top:10px}#dg-local-explain code{font-size:10px}#dat-gui-save-locally{display:none}.dg{color:#eee;font:11px 'Lucida Grande', sans-serif;text-shadow:0 -1px 0 #111}.dg.main::-webkit-scrollbar{width:5px;background:#1a1a1a}.dg.main::-webkit-scrollbar-corner{height:0;display:none}.dg.main::-webkit-scrollbar-thumb{border-radius:5px;background:#676767}.dg li:not(.folder){background:#1a1a1a;border-bottom:1px solid #2c2c2c}.dg li.save-row{line-height:25px;background:#dad5cb;border:0}.dg li.save-row select{margin-left:5px;width:108px}.dg li.save-row .button{margin-left:5px;margin-top:1px;border-radius:2px;font-size:9px;line-height:7px;padding:4px 4px 5px 4px;background:#c5bdad;color:#fff;text-shadow:0 1px 0 #b0a58f;box-shadow:0 -1px 0 #b0a58f;cursor:pointer}.dg li.save-row .button.gears{background:#c5bdad url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAANCAYAAAB/9ZQ7AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAQJJREFUeNpiYKAU/P//PwGIC/ApCABiBSAW+I8AClAcgKxQ4T9hoMAEUrxx2QSGN6+egDX+/vWT4e7N82AMYoPAx/evwWoYoSYbACX2s7KxCxzcsezDh3evFoDEBYTEEqycggWAzA9AuUSQQgeYPa9fPv6/YWm/Acx5IPb7ty/fw+QZblw67vDs8R0YHyQhgObx+yAJkBqmG5dPPDh1aPOGR/eugW0G4vlIoTIfyFcA+QekhhHJhPdQxbiAIguMBTQZrPD7108M6roWYDFQiIAAv6Aow/1bFwXgis+f2LUAynwoIaNcz8XNx3Dl7MEJUDGQpx9gtQ8YCueB+D26OECAAQDadt7e46D42QAAAABJRU5ErkJggg==) 2px 1px no-repeat;height:7px;width:8px}.dg li.save-row .button:hover{background-color:#bab19e;box-shadow:0 -1px 0 #b0a58f}.dg li.folder{border-bottom:0}.dg li.title{padding-left:16px;background:#000 url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlI+hKgFxoCgAOw==) 6px 10px no-repeat;cursor:pointer;border-bottom:1px solid rgba(255,255,255,0.2)}.dg .closed li.title{background-image:url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlGIWqMCbWAEAOw==)}.dg .cr.boolean{border-left:3px solid #806787}.dg .cr.function{border-left:3px solid #e61d5f}.dg .cr.number{border-left:3px solid #2fa1d6}.dg .cr.number input[type=text]{color:#2fa1d6}.dg .cr.string{border-left:3px solid #1ed36f}.dg .cr.string input[type=text]{color:#1ed36f}.dg .cr.function:hover,.dg .cr.boolean:hover{background:#111}.dg .c input[type=text]{background:#303030;outline:none}.dg .c input[type=text]:hover{background:#3c3c3c}.dg .c input[type=text]:focus{background:#494949;color:#fff}.dg .c .slider{background:#303030;cursor:ew-resize}.dg .c .slider-fg{background:#2fa1d6}.dg .c .slider:hover{background:#3c3c3c}.dg .c .slider:hover .slider-fg{background:#44abda}
+.theme_imgs {
+    position: absolute;
+    width: 450px;
+    height: 421px;
+    left: 60%;
+    margin-left: -300px;
+    top: 50%;
+    z-index: 1000;
+    margin-top: -281px;
+}
+ .theme_imgs img{width: 100%;display: block;}   
 </style>
 </head>
 <body>
-<div class="three_container" id="bg3_click">
-    <img id='obj' class="img_bg1" src ="images/bg3.jpg" border ='0' />
+
+<div id="canvas-container">
+<div style="height:700px;overflow:hidden;" id='casBox'>
+    <canvas id='cas' style="background-color:rgba(0,5,24,1);">浏览器不支持canvas</canvas>
+     <img src="images/bg_3.jpg" alt="" id="moon" style="visibility: hidden;" />  
+     <div class="theme_imgs"><img src="images/logo.png" alt=""></div> 
+ 
 </div>
-<script language =javascript >
- var curIndex=0;
- //时间间隔 单位毫秒
- var timeInterval=700;
- var arr=new Array();
- arr[0]="images/bg3.jpg";
- arr[1]="images/bg4.jpg";
-setInterval(changeImg,timeInterval);
-function changeImg()
-{
-    var obj=document.getElementById("obj");
-    if (curIndex==arr.length-1)
-    {
-        curIndex=0;
-    }
-    else
-    {
-        curIndex+=1;
-   }
-    obj.src=arr[curIndex];
-}
+</div>
+
+
+<!--
+<div id="canvas-container">
+<div class="theme_imgs"><img src="images/logo.png" alt=""></div> 
+</div>
+-->
+<script type="text/javascript">
+		document.getElementById("casBox").style.height = window.innerHeight + 'px';
+		var canvas = document.getElementById("cas");
+		var ocas = document.createElement("canvas");
+		var octx = ocas.getContext("2d");
+		var ctx = canvas.getContext("2d");
+		ocas.width = canvas.width = window.innerWidth;
+		ocas.height = canvas.height = window.innerHeight;
+		var bigbooms = [];
+
+		window.onload = function() {
+		    initAnimate()
+		}
+
+		function initAnimate() {
+		    drawBg();
+
+		    lastTime = new Date();
+		    animate();
+		}
+
+		var lastTime;
+
+		function animate() {
+		    ctx.save();
+		    ctx.fillStyle = "rgba(0,5,24,0.1)";
+		    ctx.fillRect(0, 0, canvas.width, canvas.height);
+		    ctx.restore();
+
+
+		    var newTime = new Date();
+		    if (newTime - lastTime > 500 + (window.innerHeight - 767) / 2) {
+		        var random = Math.random() * 100 > 2 ? true : false;
+		        var x = getRandom(canvas.width / 5, canvas.width * 4 / 5);
+		        var y = getRandom(50, 200);
+		        if (random) {
+		            var bigboom = new Boom(getRandom(canvas.width / 3, canvas.width * 2 / 3), 2, "#FFF", {
+		                x: x,
+		                y: y
+		            });
+		            bigbooms.push(bigboom)
+		        } else {
+		            var bigboom = new Boom(getRandom(canvas.width / 3, canvas.width * 2 / 3), 2, "#FFF", {
+		                x: canvas.width / 2,
+		                y: 200
+		            }, document.querySelectorAll(".shape")[parseInt(getRandom(0, document.querySelectorAll(".shape").length))]);
+		            bigbooms.push(bigboom)
+		        }
+		        lastTime = newTime;
+		        console.log(bigbooms)
+		    }
+
+		    stars.foreach(function() {
+		        this.paint();
+		    })
+
+		    drawMoon();
+
+		    bigbooms.foreach(function(index) {
+		        var that = this;
+		        if (!this.dead) {
+		            this._move();
+		            this._drawLight();
+		        } else {
+		            this.booms.foreach(function(index) {
+		                if (!this.dead) {
+		                    this.moveTo(index);
+		                } else if (index === that.booms.length - 1) {
+		                    bigbooms[bigbooms.indexOf(that)] = null;
+		                }
+		            })
+		        }
+		    });
+
+		    raf(animate);
+		}
+
+		function drawMoon() {
+		    var moon = document.getElementById("moon");
+		    var centerX = canvas.width - window.innerWidth,
+		        centerY =  0,
+		        width = window.innerWidth,
+		        height =  window.innerHeight;
+		    if (moon.complete) {
+		        ctx.drawImage(moon, centerX, centerY, width, height)
+		    } else {
+		        moon.onload = function() {
+		            ctx.drawImage(moon, centerX, centerY, width, height)
+		        }
+		    }
+		    var index = 0;
+		    for (var i = 0; i < 10; i++) {
+		        ctx.save();
+		        ctx.beginPath();
+		        ctx.arc(centerX + width / 2, centerY + width / 2, width / 2 + index, 0, 2 * Math.PI);
+		        ctx.fillStyle = "rgba(255,255,255,0)";
+		        index += 2;
+		        ctx.fill();
+		        ctx.restore();
+		    }
+
+		}
+
+		Array.prototype.foreach = function(callback) {
+		    for (var i = 0; i < this.length; i++) {
+		        if (this[i] !== null) callback.apply(this[i], [i])
+		    }
+		}
+
+		var raf = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function(callback) {
+		    window.setTimeout(callback, 1000 / 60);
+		};
+
+		canvas.onclick = function() {
+		    var x = event.clientX;
+		    var y = event.clientY;
+		    var bigboom = new Boom(getRandom(canvas.width / 3, canvas.width * 2 / 3), 2, "#FFF", {
+		        x: x,
+		        y: y
+		    });
+		    bigbooms.push(bigboom)
+		}
+
+		// canvas.addEventLisener("touchstart" , function(event){
+		// 	var touch = event.targetTouches[0];
+		// 	var x = event.pageX;
+		// 	var y = event.pageY;
+		// 	var bigboom = new Boom(getRandom(canvas.width/3,canvas.width*2/3) ,2,"#FFF" , {x:x , y:y});
+		// 	bigbooms.push(bigboom)
+		// })
+
+		var Boom = function(x, r, c, boomArea, shape) {
+		    this.booms = [];
+		    this.x = x;
+		    this.y = (canvas.height + r);
+		    this.r = r;
+		    this.c = c;
+		    this.shape = shape || false;
+		    this.boomArea = boomArea;
+		    this.theta = 0;
+		    this.dead = false;
+		    this.ba = parseInt(getRandom(80, 200));
+		}
+		Boom.prototype = {
+		    _paint: function() {
+		        ctx.save();
+		        ctx.beginPath();
+		        ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
+		        ctx.fillStyle = this.c;
+		        ctx.fill();
+		        ctx.restore();
+		    },
+		    _move: function() {
+		        var dx = this.boomArea.x - this.x,
+		            dy = this.boomArea.y - this.y;
+		        this.x = this.x + dx * 0.01;
+		        this.y = this.y + dy * 0.01;
+
+		        if (Math.abs(dx) <= this.ba && Math.abs(dy) <= this.ba) {
+		            if (this.shape) {
+		                this._shapBoom();
+		            } else this._boom();
+		            this.dead = true;
+		        } else {
+		            this._paint();
+		        }
+		    },
+		    _drawLight: function() {
+		        ctx.save();
+		        ctx.fillStyle = "rgba(255,228,150,0.3)";
+		        ctx.beginPath();
+		        ctx.arc(this.x, this.y, this.r + 3 * Math.random() + 1, 0, 2 * Math.PI);
+		        ctx.fill();
+		        ctx.restore();
+		    },
+		    _boom: function() {
+		        var fragNum = getRandom(30, 200);
+		        var style = getRandom(0, 10) >= 5 ? 1 : 2;
+		        var color;
+		        if (style === 1) {
+		            color = {
+		                a: parseInt(getRandom(128, 255)),
+		                b: parseInt(getRandom(128, 255)),
+		                c: parseInt(getRandom(128, 255))
+		            }
+		        }
+
+		        var fanwei = parseInt(getRandom(300, 400));
+		        for (var i = 0; i < fragNum; i++) {
+		            if (style === 2) {
+		                color = {
+		                    a: parseInt(getRandom(128, 255)),
+		                    b: parseInt(getRandom(128, 255)),
+		                    c: parseInt(getRandom(128, 255))
+		                }
+		            }
+		            var a = getRandom(-Math.PI, Math.PI);
+		            var x = getRandom(0, fanwei) * Math.cos(a) + this.x;
+		            var y = getRandom(0, fanwei) * Math.sin(a) + this.y;
+		            // 修改烟花大小
+		            //var radius = getRandom(0, 2)
+		            var radius = getRandom(0, 10)
+		            var frag = new Frag(this.x, this.y, radius, color, x, y);
+		            this.booms.push(frag);
+		        }
+		    },
+		    _shapBoom: function() {
+		        var that = this;
+		        putValue(ocas, octx, this.shape, 5, function(dots) {
+		            var dx = canvas.width / 2 - that.x;
+		            var dy = canvas.height / 2 - that.y;
+		            for (var i = 0; i < dots.length; i++) {
+		                color = {
+		                    a: dots[i].a,
+		                    b: dots[i].b,
+		                    c: dots[i].c
+		                }
+		                var x = dots[i].x;
+		                var y = dots[i].y;
+		                var radius = 1;
+		                var frag = new Frag(that.x, that.y, radius, color, x - dx, y - dy);
+		                that.booms.push(frag);
+		            }
+		        })
+		    }
+		}
+
+		function putValue(canvas, context, ele, dr, callback) {
+		    context.clearRect(0, 0, canvas.width, canvas.height);
+		    var img = new Image();
+		    if (ele.innerHTML.indexOf("img") >= 0) {
+		        img.src = ele.getElementsByTagName("img")[0].src;
+		        imgload(img, function() {
+		            context.drawImage(img, canvas.width / 2 - img.width / 2, canvas.height / 2 - img.width / 2);
+		            dots = getimgData(canvas, context, dr);
+		            callback(dots);
+		        })
+		    } else {
+		        var text = ele.innerHTML;
+		        context.save();
+		        var fontSize = 80;
+		        context.font = fontSize + "px 微软雅黑";
+		        context.textAlign = "center";
+		        context.textBaseline = "middle";
+		        context.fillStyle = "rgba(" + parseInt(getRandom(128, 255)) + "," + parseInt(getRandom(128, 255)) + "," + parseInt(getRandom(128, 255)) + " , 1)";
+		        context.fillText(text, canvas.width / 2, canvas.height / 2);
+		        context.restore();
+		        dots = getimgData(canvas, context, dr);
+		        callback(dots);
+		    }
+		}
+
+		function imgload(img, callback) {
+		    if (img.complete) {
+		        callback.call(img);
+		    } else {
+		        img.onload = function() {
+		            callback.call(this);
+		        }
+		    }
+		}
+
+		function getimgData(canvas, context, dr) {
+		    var imgData = context.getImageData(0, 0, canvas.width, canvas.height);
+		    context.clearRect(0, 0, canvas.width, canvas.height);
+		    var dots = [];
+		    for (var x = 0; x < imgData.width; x += dr) {
+		        for (var y = 0; y < imgData.height; y += dr) {
+		            var i = (y * imgData.width + x) * 4;
+		            if (imgData.data[i + 3] > 128) {
+		                var dot = {
+		                    x: x,
+		                    y: y,
+		                    a: imgData.data[i],
+		                    b: imgData.data[i + 1],
+		                    c: imgData.data[i + 2]
+		                };
+		                dots.push(dot);
+		            }
+		        }
+		    }
+		    return dots;
+		}
+
+		function getRandom(a, b) {
+		    return Math.random() * (b - a) + a;
+		}
+
+
+		var maxRadius = 1,
+		    stars = [];
+
+		function drawBg() {
+		    for (var i = 0; i < 100; i++) {
+		        var r = Math.random() * maxRadius;
+		        var x = Math.random() * canvas.width;
+		        var y = Math.random() * 2 * canvas.height - canvas.height;
+		        var star = new Star(x, y, r);
+		        stars.push(star);
+		        star.paint()
+		    }
+
+		}
+
+		var Star = function(x, y, r) {
+		    this.x = x;
+		    this.y = y;
+		    this.r = r;
+		}
+		Star.prototype = {
+		    paint: function() {
+		        ctx.save();
+		        ctx.beginPath();
+		        ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
+		        ctx.fillStyle = "rgba(255,255,255," + this.r + ")";
+		        ctx.fill();
+		        ctx.restore();
+		    }
+		}
+
+		var focallength = 250;
+		var Frag = function(centerX, centerY, radius, color, tx, ty) {
+		    this.tx = tx;
+		    this.ty = ty;
+		    this.x = centerX;
+		    this.y = centerY;
+		    this.dead = false;
+		    this.centerX = centerX;
+		    this.centerY = centerY;
+		    this.radius = radius;
+		    this.color = color;
+		}
+
+		Frag.prototype = {
+		    paint: function() {
+		        ctx.save();
+		        ctx.beginPath();
+		        ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+		        ctx.fillStyle = "rgba(" + this.color.a + "," + this.color.b + "," + this.color.c + ",1)";
+		        ctx.fill()
+		        ctx.restore();
+		    },
+		    moveTo: function(index) {
+		        this.ty = this.ty + 0.3;
+		        var dx = this.tx - this.x,
+		            dy = this.ty - this.y;
+		        this.x = Math.abs(dx) < 0.1 ? this.tx : (this.x + dx * 0.1);
+		        this.y = Math.abs(dy) < 0.1 ? this.ty : (this.y + dy * 0.1);
+		        if (dx === 0 && Math.abs(dy) <= 80) {
+		            this.dead = true;
+		        }
+		        this.paint();
+		    }
+		}
 </script>
-<script>
-      window.ontouchstart = function(e) { e.preventDefault(); };
-</script>
-<script type="text/javascript" src="js/MetaHandler.js"></script>
 </body>
 </html>
