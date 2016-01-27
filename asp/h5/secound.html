@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta content="target-densitydpi=device-dpi,width=750" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no,email=no" name="format-detection" />
+<title>第二页</title>
+<link href="css/common.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<body>
+
+<div class="secound_container">
+	<img src="images/bg_2.jpg" alt="" class="img_bg2">
+	<div class="header_go"></div>
+	<div class="description">
+		<p>操作说明</p>
+		<p>旋动下方圆形按钮，从左向右顺时针旋转，即可为江河充电加油</p>
+	</div>
+	<div class="circleBtn">
+		<div class="rotate" id='box'>
+			<img id="img" src="images/outer_circle.png" class="outer_circle" /> 
+			<span id="btn" class="click"><img src="images/inner_btn.png" alt=""> </span>
+			<span class="elect" id='span1'></span>
+		</div>
+	</div>
+	<div class="battery_box">
+    	<img src="images/battery.png" alt="">
+    	<em class="pecent_num">50%</em>
+    	<div class="electric_box" id="electric_btn">
+    		<span></span>
+	    	<span></span>
+	    	<span></span>
+	    	<span></span>
+	    	<span></span>
+			<span></span>
+	    	<span></span>
+			<span></span>
+	    	<span></span>
+			<span></span>
+    	</div>	
+    </div>
+</div>
+<script>
+	window.onload=function(){
+		var oBtn=document.getElementById('btn');
+		var oImg=document.getElementById('img');
+    oBtn.onclick=function(){
+      oImg.className='icon-play';
+
+      setTimeout(function(){
+        oImg.className=' ';
+      },5000);
+    }
+  }
+
+</script>
+  <script type="text/javascript">
+    var oSpan=document.getElementById('span1');
+    var a=90; // 角度
+    var oDiv=document.getElementById('box');
+    var R=oDiv.offsetWidth/2+10;
+    var Bigtimer=null;
+    var smalltimer=null;
+     var b=100;
+    document.onclick=function(){
+      Bigtimer=setInterval(function (){
+        a++;
+        if(a>=270){
+          var x=-10;
+          b--;
+          if(b<=-200){
+            oSpan.style.top=(-200)+'px';
+            clearInterval(Bigtimer);
+          }else {
+            oSpan.style.left=(x-10)+'px';
+            oSpan.style.top=b+'px';
+          }
+        }else{
+          var x=R+R*Math.sin(d2a(a));
+          var y=R-R*Math.cos(d2a(a));
+          
+          oSpan.style.left=(x-10)+'px';
+          oSpan.style.top=y+'px';
+        }
+
+        
+      }, 1);
+    }
+
+  function d2a(n)
+  {
+    return n*Math.PI/180;
+  }
+</script>
+<script>
+	window.onload=function(){
+	
+	var oDivelect=document.getElementById('electric_btn')
+	var aSpan=oDivelect.getElementsByTagName('span');   // 获取标签为span的数组
+	var spanLength=aSpan.length;                       //获取数组长度
+	var index=spanLength-1;							   // 游标,因为数组是从0开始  这里减去1					
+	
+	var max = 3; 
+	
+	setInterval(function(){
+	
+		if(index >= spanLength - max )                                    //如果游标大于等于0给位于aSpan数组第Index处的span对象className赋值
+		{
+		
+			var objSpan=aSpan[index];                   //得到要赋值的span对象
+			
+			objSpan.className='electric';              //给该span的className赋值
+			
+			index--;								  //游标减一，给下一次跳进这个函数的下一个span赋值	
+		}
+		else
+		{
+			index = spanLength-1;
+			clearall();
+			 //当游标小于0时可以在此处终止计时器,充满电后的处理
+			//alert("hello   world!");
+			
+		} 
+	
+	},800);
+	
+	/*
+		var oEbtn=document.getElementById('electric_btn');
+		var aSpan=document.getElementsByTagName('span');
+		function add(){
+			
+			for(var i=0;i<aSpan.length;i++){
+				
+				if(aSpan[i].className==""){
+					aSpan[i].className='electric';
+					
+					console.log(aSpan[i].className);
+				}
+			}
+		}
+		add();
+	*/	
+
+	function clearall(){
+			
+			for(var i=0;i<aSpan.length;i++){
+				
+				if(aSpan[i].className=="electric"){
+					aSpan[i].className='';
+					
+					console.log(aSpan[i].className);
+				}
+			}
+		}
+	}
+</script>
+<script type="text/javascript" src="js/MetaHandler.js"></script>
+</body>
+</html>
