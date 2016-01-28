@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="tool.aspx.cs" Inherits="inputPercentInfo" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="toolnew.aspx.cs" Inherits="inputPercentInfo" %>
 
 <!DOCTYPE html>
 
