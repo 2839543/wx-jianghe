@@ -16,7 +16,7 @@ public class GlobalConf
 
 
     //是否中途暂停百分比增长
-    public static bool  HALFWAY_PAUSE = false;
+    public static bool  HALFWAY_PAUSE = true;
 
     //是否开始显示百分比
     public static bool START_VOTE = false;

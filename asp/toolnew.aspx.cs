@@ -1,4 +1,5 @@
-﻿using System;
+﻿using log4net.Config;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -10,40 +11,51 @@ using System.Web.UI.WebControls;
 
 public partial class inputPercentInfo : System.Web.UI.Page
 {
+    //log4net.ILog log = log4net.LogManager.GetLogger("loginfo");
+    public static readonly log4net.ILog log = log4net.LogManager.GetLogger("loginfo");
+     
     protected void Page_Load(object sender, EventArgs e)
     {
+         
         showTime.Text = DateTime.Now.ToString();
         victoryState.Text = GlobalConf.VICTORY.ToString();
 
         if (GlobalConf.START_VOTE)
         {
+            log.Info(" [Page_Load] in START_VOTE->" + GlobalConf.START_VOTE + " GreenYellow");
             btn_start.BackColor = System.Drawing.Color.GreenYellow;
             btn_start.Text = "点击停止投票计数";
         }
         else
         {
+            log.Info(" [Page_Load] in START_VOTE->" + GlobalConf.START_VOTE + " Red");
             btn_start.BackColor = System.Drawing.Color.Red;
             btn_start.Text = "点击开始投票计数";
         }
 
         if (GlobalConf.HALFWAY_PAUSE)
         {
+            log.Info(" [Page_Load] in HALFWAY_PAUSE->" + GlobalConf.HALFWAY_PAUSE + " Red");
             Button4.BackColor = System.Drawing.Color.Red;
             Button4.Text = "点击切换为正常投票计数";
         }
         else
         {
+            log.Info(" [Page_Load] in HALFWAY_PAUSE->" + GlobalConf.HALFWAY_PAUSE + " GreenYellow");
             Button4.BackColor = System.Drawing.Color.GreenYellow;
             Button4.Text = "点击切换为最高显示66%";
         }
 
         if (GlobalConf.VICTORY)
         {
+            
             Button2.BackColor = System.Drawing.Color.GreenYellow;
             Button2.Text = "点击切换到电池充电页面，屏蔽页面3 ";
+            log.Info(" [Page_Load] in VICTORY->" + GlobalConf.VICTORY + " GreenYellow");
         }
         else
         {
+            log.Info(" [Page_Load] in VICTORY->" + GlobalConf.VICTORY + " Red");
             Button2.BackColor = System.Drawing.Color.Red;
             Button2.Text = "点击结束电池充电页面，转换至江河3页面";
         }
@@ -59,13 +71,14 @@ public partial class inputPercentInfo : System.Web.UI.Page
                 GlobalConf.VICTORY = false;
                 Button2.Text = "点击结束电池充电页面，转换至江河3页面";
                 Button2.BackColor = System.Drawing.Color.Red;
-
+                log.Info(" [Button_Click] in VICTORY->" + GlobalConf.VICTORY + " Red");
             }
             else
             {
                 GlobalConf.VICTORY = true;
                 Button2.Text = "点击切换到电池充电页面，屏蔽页面3 ";
                 Button2.BackColor = System.Drawing.Color.GreenYellow;
+                log.Info(" [Button_Click] in VICTORY->" + GlobalConf.VICTORY + " GreenYellow");
             }
         } 
     }
@@ -79,6 +92,7 @@ public partial class inputPercentInfo : System.Web.UI.Page
                 GlobalConf.HALFWAY_PAUSE = false;
                 Button4.Text = "点击切换为最高显示66%";
                 Button4.BackColor = System.Drawing.Color.GreenYellow;
+                log.Info(" [Button_Click] in HALFWAY_PAUSE->" + GlobalConf.HALFWAY_PAUSE + " GreenYellow");
 
             }
             else
@@ -87,6 +101,7 @@ public partial class inputPercentInfo : System.Web.UI.Page
 
                 Button4.Text = "点击切换为正常投票计数";
                 Button4.BackColor = System.Drawing.Color.Red;
+                log.Info(" [Button_Click] in HALFWAY_PAUSE->" + GlobalConf.HALFWAY_PAUSE + " Red");
             }
         }
     }
@@ -99,6 +114,7 @@ public partial class inputPercentInfo : System.Web.UI.Page
                 GlobalConf.START_VOTE = false;
                 btn_start.Text = "点击开始投票计数";
                 btn_start.BackColor = System.Drawing.Color.Red;
+                log.Info(" [Button_Click] in START_VOTE->" + GlobalConf.START_VOTE + " Red");
 
             }
             else
@@ -106,6 +122,7 @@ public partial class inputPercentInfo : System.Web.UI.Page
                 GlobalConf.START_VOTE = true;
                 btn_start.Text = "点击停止投票计数";
                 btn_start.BackColor = System.Drawing.Color.GreenYellow;
+                log.Info(" [Button_Click] in START_VOTE->" + GlobalConf.START_VOTE + " GreenYellow");
             }
         }
     }

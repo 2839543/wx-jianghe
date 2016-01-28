@@ -57,7 +57,6 @@
         <br />
         <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="upload file to db" />
         <br />
-        <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="点击结束电池充电页面，转换江河3页面" />
         <br />
         <br />
         <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
@@ -65,19 +64,16 @@
         <p>
             测试用工具区</p>
         <p>
-            <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="切换到电池充电页面，屏蔽页面3" />
-        </p>
-        <p>
             &nbsp;</p>
         <p>
             &nbsp;</p>
         <p>
             &nbsp;</p>
         <p>
-            <asp:Button ID="Button6" runat="server" OnClick="Button6_Click" Text="设置开关暂停百分比" />
-        </p>
+            &nbsp;</p>
         <p>
-            <asp:Button ID="Button7" runat="server" OnClick="Button7_Click" Text="查看暂停设置" />
+            &nbsp;</p>
+        <p>
             <asp:Label ID="Label4" runat="server" Text="Label"></asp:Label>
         </p>
     </form>
