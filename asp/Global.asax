@@ -58,7 +58,7 @@
             return;
         }
 
-        if (Sqlite_Task_T.GetCurrStatus(GlobalConf.KEY_IS_HALFWAY_PAUSE) == true)
+        if (Sqlite_Task_T.GetCurrStatus(GlobalConf.KEY_IS_HALFWAY_PAUSE) == false)
         {
         //中途暂停百分比增长 ,获取暂停百分比的值
             int p_percent = Sqlite_Task_T.getHalfwayPause();
