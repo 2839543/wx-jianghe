@@ -104,6 +104,7 @@ public partial class inputPercentInfo : System.Web.UI.Page
         if (!IsPageRefreshed)
         {
             Sqlite_Task_T.Update(GlobalConf.KEY_VICTORY, "true");
+            GlobalConf.VICTORY = true;
             this.lbl_fire.BackColor = System.Drawing.Color.GreenYellow;
         }
     }
@@ -114,6 +115,7 @@ public partial class inputPercentInfo : System.Web.UI.Page
         if (!IsPageRefreshed)
         {
             Sqlite_Task_T.Update(GlobalConf.KEY_VICTORY, "false");
+            GlobalConf.VICTORY = false;
             this.lbl_fire.BackColor = System.Drawing.Color.Red;
         }
     } 
