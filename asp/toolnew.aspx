@@ -33,18 +33,26 @@
             <asp:Label ID="Label3" runat="server" Text="年会上线功能区"></asp:Label>
             <br />
             <br />
-            <asp:Label ID="Label5" runat="server" Font-Size="XX-Large" style="text-align: center" Text="︾启动从0开始计数︾" Width="100%"></asp:Label>
-            <br />
-
-
-
-
-
-            <asp:Button ID="btn_start" runat="server" OnClientClick="return confirm('Are u sure?');" OnClick="btn_start_Click" Text="点击开始投票计数" Height="250px" Width="100%" BackColor="Red" Font-Size="XX-Large"/>
+            <asp:Label ID="lbl_vote" runat="server" Font-Size="XX-Large" style="text-align: center" Text="︾启动从0开始计数︾" Width="100%" BackColor="Red" Height="200px"></asp:Label>
             <br />
             <br />
+
+
+
+
+
+            <asp:Button ID="btn_start_vote" runat="server" OnClientClick="return confirm('Are u sure?');" OnClick="btn_start_vote_Click" Text="开始投票计数" Height="250px" Width="35%" BackColor="GreenYellow" Font-Size="XX-Large"/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
+
+
+            <asp:Button ID="btn_stop_vote" runat="server" OnClientClick="return confirm('Are u sure?');" OnClick="btn_stop_vote_Click" Text="关闭投票计数" Height="250px" Width="35%" BackColor="Red" Font-Size="XX-Large"/>
             <br />
-            <asp:Label ID="Label6" runat="server" Font-Size="XX-Large" style="text-align: center" Text="︾66%计数管理︾" Width="100%"></asp:Label>
+            <br />
+            <br />
+            <asp:Label ID="lbl_66" runat="server" Font-Size="XX-Large" style="text-align: center" Text="︾66%计数管理︾" Width="100%" BackColor="Red" Height="200px"></asp:Label>
             <br />
             <br />
     </div>  
@@ -73,10 +81,18 @@
 
 
 
-            <asp:Button ID="Button4" runat="server" OnClientClick="return confirm('Are u sure?');" OnClick="Button4_Click" Text="点击切换为正常投票计数" Height="250px" Width="100%" BackColor="Red" Font-Size="XX-Large"/>
+            <asp:Button ID="btn_visible_66" runat="server" OnClientClick="return confirm('Are u sure?');" OnClick="btn_visible_66_Click" Text="切换为正常投票计数" Height="250px" Width="35%" BackColor="GreenYellow" Font-Size="XX-Large"/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+
+
+
+
+
+            <asp:Button ID="btn_only_66" runat="server" OnClientClick="return confirm('Are u sure?');" OnClick="btn_only_66_Click" Text="切换为最高显示66%" Height="250px" Width="35%" BackColor="Red" Font-Size="XX-Large"/>
+        &nbsp;&nbsp;&nbsp;
         <br />
         <br />
-        <asp:Label ID="Label7" runat="server" Font-Size="XX-Large" style="text-align: center" Text="︾启用烟花页面管理︾" Width="100%"></asp:Label>
+        <asp:Label ID="lbl_fire" runat="server" Font-Size="XX-Large" style="text-align: center" Text="︾启用烟花页面管理︾" Width="100%" BackColor="Red" Height="200px"></asp:Label>
         <br />
 
 
@@ -84,7 +100,10 @@
 
 
         <br />
-        <asp:Button ID="Button2" runat="server" OnClientClick="return confirm('Are u sure?');"  OnClick="Button2_Click" Text="点击结束电池充电页面，转换江河3页面" Height="250px" Width="100%" BackColor="Red" Font-Size="XX-Large" />
+        <asp:Button ID="btn_show_3" runat="server" OnClientClick="return confirm('Are u sure?');"  OnClick="btn_show_3_Click" Text="切换为仅江河3页面" Height="250px" Width="35%" BackColor="GreenYellow" Font-Size="XX-Large" />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Button ID="btn_visible_3" runat="server" OnClientClick="return confirm('Are u sure?');"  OnClick="btn_visible_3_Click" Text="切换到电池充电页面，屏蔽页面3" Height="250px" Width="35%" BackColor="Red" Font-Size="XX-Large" />
+        &nbsp;&nbsp;&nbsp;&nbsp;
         <br />
         <br />
         <hr />

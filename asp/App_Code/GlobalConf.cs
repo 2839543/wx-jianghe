@@ -16,10 +16,18 @@ public class GlobalConf
 
 
     //是否中途暂停百分比增长
-    public static bool  HALFWAY_PAUSE = true;
+    //public static bool  HALFWAY_PAUSE = true;
 
     //是否开始显示百分比
-    public static bool START_VOTE = false;
+    //public static bool START_VOTE = false;
+
+
+    //是否显示烟花页面
+    public static readonly string KEY_VICTORY = "VICTORY";
+    //是否中途暂停百分比增长
+    public static readonly string KEY_IS_HALFWAY_PAUSE = "IS_HALFWAY_PAUSE";
+    //是否开始显示百分比
+    public static readonly string KEY_START_VOTE = "START_VOTE";
 
     public static int percent = 0;
 

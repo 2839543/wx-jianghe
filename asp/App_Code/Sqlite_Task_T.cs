@@ -14,6 +14,16 @@ public class Sqlite_Task_T
 
     public static readonly string KEY_HALFWAY_PAUSE = "halfway_pause";
 
+ 
+      //是否显示烟花页面
+   // public static readonly string KEY_VICTORY = "VICTORY";
+    //是否中途暂停百分比增长
+    //public static readonly string KEY_IS_HALFWAY_PAUSE = "IS_HALFWAY_PAUSE";
+      //是否开始显示百分比
+    //public static readonly string KEY_START_VOTE = "START_VOTE";
+
+
+
         public Sqlite_Task_T()   //无参数构造函数
         {
            SQLiteConnection conn = null;
@@ -65,6 +75,29 @@ public class Sqlite_Task_T
              return _result;
          }
 
+         public static bool GetCurrStatus(String  key)
+         {
+             bool tmp = false;
+             using (SQLiteConnection con = new SQLiteConnection(GlobalConf.DB_PATH))
+             {
+                 con.Open();
+                 string sqlStr = @"SELECT *
+                                    FROM task_conf  where key = '" + key + "' ; ";
+                 using (SQLiteCommand cmd = new SQLiteCommand(sqlStr, con))
+                 {
+                     using (SQLiteDataReader dr = cmd.ExecuteReader())
+                     {
+                         while (dr.Read())
+                         { 
+                             Console.WriteLine(dr["key"].ToString() + dr["value"]); 
+                             tmp = Convert.ToBoolean(dr["value"]);
+                         }
+                     }
+                 }
+             }
+                  return tmp;
+         } 
+
 
           public static void Insert(int showtime,int percent)
         {
@@ -97,6 +130,21 @@ public class Sqlite_Task_T
                 }
             }
         }
+
+       public static void Update(string key, string value)
+       {
+           using (SQLiteConnection con = new SQLiteConnection(GlobalConf.DB_PATH))
+           {
+               con.Open();
+               string sqlStr = @"UPDATE task_conf
+                                     SET value = '"+value+"'" +
+                                   " WHERE key  = '"+key+"'";
+               using (SQLiteCommand cmd = new SQLiteCommand(sqlStr, con))
+               {
+                   cmd.ExecuteNonQuery();
+               }
+           }
+       }
 
        public static void Delete()
         {

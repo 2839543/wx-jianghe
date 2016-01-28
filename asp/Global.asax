@@ -7,9 +7,9 @@
     void Application_Start(object sender, EventArgs e) 
     {
         // 在应用程序启动时运行的代码 
-        System.Timers.Timer myTimer = new System.Timers.Timer(2000); // 每个一分钟判断一下 
+        System.Timers.Timer myTimer = new System.Timers.Timer(5000); // 每个一分钟判断一下 
         myTimer.Elapsed += new System.Timers.ElapsedEventHandler(OnTimedEvent); //执行需要操作的代码，OnTimedEvent是要执行的方法名称 
-        myTimer.Interval = 2000;
+        myTimer.Interval = 5000;
         myTimer.Enabled = true; 
 
     }
@@ -50,14 +50,16 @@
 
        // new Time_Task().countNum();
         int _percent = Sqlite_Battery_T.GetPercent();
-        
-        if(GlobalConf.START_VOTE == false){
+
+        if (Sqlite_Task_T.GetCurrStatus(GlobalConf.KEY_START_VOTE) == false)
+        {
         //关闭状态的电池计数 百分值设置 0 
             GlobalConf.percent = 0;
             return;
         }
-        
-        if(GlobalConf.HALFWAY_PAUSE == true){
+
+        if (Sqlite_Task_T.GetCurrStatus(GlobalConf.KEY_IS_HALFWAY_PAUSE) == true)
+        {
         //中途暂停百分比增长 ,获取暂停百分比的值
             int p_percent = Sqlite_Task_T.getHalfwayPause();
             
@@ -66,7 +68,12 @@
                 GlobalConf.percent = p_percent;
                 return; 
             }   
-        } 
+        }
+
+        if (Sqlite_Task_T.GetCurrStatus(GlobalConf.KEY_VICTORY) == true)
+        {
+            GlobalConf.VICTORY = true;
+        }
         
         //正常百分比增长的值
          GlobalConf.percent = _percent;   

@@ -9,6 +9,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+[assembly: log4net.Config.XmlConfigurator(Watch = true)]  
+
 public partial class inputPercentInfo : System.Web.UI.Page
 {
     //log4net.ILog log = log4net.LogManager.GetLogger("loginfo");
@@ -18,115 +20,103 @@ public partial class inputPercentInfo : System.Web.UI.Page
     {
          
         showTime.Text = DateTime.Now.ToString();
-        victoryState.Text = GlobalConf.VICTORY.ToString();
+        // victoryState.Text = GlobalConf.VICTORY.ToString();
+       
 
-        if (GlobalConf.START_VOTE)
+
+        if ( Sqlite_Task_T.GetCurrStatus(GlobalConf.KEY_START_VOTE)== true)
         {
-            log.Info(" [Page_Load] in START_VOTE->" + GlobalConf.START_VOTE + " GreenYellow");
-            btn_start.BackColor = System.Drawing.Color.GreenYellow;
-            btn_start.Text = "点击停止投票计数";
+            //log.Info(" [Page_Load] in START_VOTE->" + GlobalConf.START_VOTE + " Green  
+            this.lbl_vote.BackColor = System.Drawing.Color.GreenYellow;
         }
         else
         {
-            log.Info(" [Page_Load] in START_VOTE->" + GlobalConf.START_VOTE + " Red");
-            btn_start.BackColor = System.Drawing.Color.Red;
-            btn_start.Text = "点击开始投票计数";
+            //log.Info(" [Page_Load] in START_VOTE->" + GlobalConf.START_VOTE + " Red"); 
+            this.lbl_vote.BackColor = System.Drawing.Color.Red;
         }
 
-        if (GlobalConf.HALFWAY_PAUSE)
+        if (Sqlite_Task_T.GetCurrStatus(GlobalConf.KEY_IS_HALFWAY_PAUSE) == true )
         {
-            log.Info(" [Page_Load] in HALFWAY_PAUSE->" + GlobalConf.HALFWAY_PAUSE + " Red");
-            Button4.BackColor = System.Drawing.Color.Red;
-            Button4.Text = "点击切换为正常投票计数";
+            //log.Info(" [Page_Load] in HALFWAY_PAUSE->" + GlobalConf.HALFWAY_PAUSE + " Red"); 
+            this.lbl_66.BackColor = System.Drawing.Color.GreenYellow;
         }
         else
         {
-            log.Info(" [Page_Load] in HALFWAY_PAUSE->" + GlobalConf.HALFWAY_PAUSE + " GreenYellow");
-            Button4.BackColor = System.Drawing.Color.GreenYellow;
-            Button4.Text = "点击切换为最高显示66%";
+            //log.Info(" [Page_Load] in HALFWAY_PAUSE->" + GlobalConf.HALFWAY_PAUSE + " GreenYellow");
+            this.lbl_66.BackColor = System.Drawing.Color.Red;
         }
 
-        if (GlobalConf.VICTORY)
-        {
-            
-            Button2.BackColor = System.Drawing.Color.GreenYellow;
-            Button2.Text = "点击切换到电池充电页面，屏蔽页面3 ";
-            log.Info(" [Page_Load] in VICTORY->" + GlobalConf.VICTORY + " GreenYellow");
+        if (Sqlite_Task_T.GetCurrStatus(GlobalConf.KEY_VICTORY) == true)
+        { 
+           // log.Info(" [Page_Load] in VICTORY->" + GlobalConf.VICTORY + " GreenYellow");
+            this.lbl_fire.BackColor = System.Drawing.Color.GreenYellow;
         }
         else
         {
-            log.Info(" [Page_Load] in VICTORY->" + GlobalConf.VICTORY + " Red");
-            Button2.BackColor = System.Drawing.Color.Red;
-            Button2.Text = "点击结束电池充电页面，转换至江河3页面";
+           // log.Info(" [Page_Load] in VICTORY->" + GlobalConf.VICTORY + " Red");
+            this.lbl_fire.BackColor = System.Drawing.Color.Red;
         }
     }
 
-    protected void Button2_Click(object sender, EventArgs e)
+    //开始投票 绿色
+    protected void btn_start_vote_Click(object sender, EventArgs e)
     {
         if (!IsPageRefreshed)
         {
-            //数据库操作
-            if (GlobalConf.VICTORY)
-            {
-                GlobalConf.VICTORY = false;
-                Button2.Text = "点击结束电池充电页面，转换至江河3页面";
-                Button2.BackColor = System.Drawing.Color.Red;
-                log.Info(" [Button_Click] in VICTORY->" + GlobalConf.VICTORY + " Red");
-            }
-            else
-            {
-                GlobalConf.VICTORY = true;
-                Button2.Text = "点击切换到电池充电页面，屏蔽页面3 ";
-                Button2.BackColor = System.Drawing.Color.GreenYellow;
-                log.Info(" [Button_Click] in VICTORY->" + GlobalConf.VICTORY + " GreenYellow");
-            }
-        } 
-    }
-
-    protected void Button4_Click(object sender, EventArgs e)
-    {
-        if (!IsPageRefreshed)
-        {
-            if (GlobalConf.HALFWAY_PAUSE)
-            {
-                GlobalConf.HALFWAY_PAUSE = false;
-                Button4.Text = "点击切换为最高显示66%";
-                Button4.BackColor = System.Drawing.Color.GreenYellow;
-                log.Info(" [Button_Click] in HALFWAY_PAUSE->" + GlobalConf.HALFWAY_PAUSE + " GreenYellow");
-
-            }
-            else
-            {
-                GlobalConf.HALFWAY_PAUSE = true;
-
-                Button4.Text = "点击切换为正常投票计数";
-                Button4.BackColor = System.Drawing.Color.Red;
-                log.Info(" [Button_Click] in HALFWAY_PAUSE->" + GlobalConf.HALFWAY_PAUSE + " Red");
-            }
-        }
-    }
-    protected void btn_start_Click(object sender, EventArgs e)
-    {
-        if (!IsPageRefreshed)
-        {
-            if (GlobalConf.START_VOTE)
-            {
-                GlobalConf.START_VOTE = false;
-                btn_start.Text = "点击开始投票计数";
-                btn_start.BackColor = System.Drawing.Color.Red;
-                log.Info(" [Button_Click] in START_VOTE->" + GlobalConf.START_VOTE + " Red");
-
-            }
-            else
-            {
-                GlobalConf.START_VOTE = true;
-                btn_start.Text = "点击停止投票计数";
-                btn_start.BackColor = System.Drawing.Color.GreenYellow;
-                log.Info(" [Button_Click] in START_VOTE->" + GlobalConf.START_VOTE + " GreenYellow");
-            }
+            Sqlite_Task_T.Update(GlobalConf.KEY_START_VOTE, "true");
+            this.lbl_vote.BackColor = System.Drawing.Color.GreenYellow;
         }
     }
 
+    //停止投票 红色
+    protected void btn_stop_vote_Click(object sender, EventArgs e)
+    {
+        if (!IsPageRefreshed)
+        {
+            Sqlite_Task_T.Update(GlobalConf.KEY_START_VOTE, "false");
+            this.lbl_vote.BackColor = System.Drawing.Color.Red;
+        }
+    }
+
+    //66% 控制无效   绿色
+    protected void btn_visible_66_Click(object sender, EventArgs e)
+    {
+        if (!IsPageRefreshed)
+        {
+            Sqlite_Task_T.Update(GlobalConf.KEY_IS_HALFWAY_PAUSE, "true");
+            this.lbl_66.BackColor = System.Drawing.Color.GreenYellow;
+        }
+    }
+
+    //仅显示到 66%  红色
+    protected void btn_only_66_Click(object sender, EventArgs e)
+    {
+        if (!IsPageRefreshed)
+        {
+            Sqlite_Task_T.Update(GlobalConf.KEY_IS_HALFWAY_PAUSE, "false");
+            this.lbl_66.BackColor = System.Drawing.Color.Red;
+        }
+    }
+
+    //仅显示烟花页面 绿色 
+    protected void btn_show_3_Click(object sender, EventArgs e)
+    {
+        if (!IsPageRefreshed)
+        {
+            Sqlite_Task_T.Update(GlobalConf.KEY_VICTORY, "true");
+            this.lbl_fire.BackColor = System.Drawing.Color.GreenYellow;
+        }
+    }
+
+    //不显示烟花页面 红色 
+    protected void btn_visible_3_Click(object sender, EventArgs e)
+    {
+        if (!IsPageRefreshed)
+        {
+            Sqlite_Task_T.Update(GlobalConf.KEY_VICTORY, "false");
+            this.lbl_fire.BackColor = System.Drawing.Color.Red;
+        }
+    } 
 
 
     //private static ILog log = LogManager.GetLogger(typeof(RefreshServe));
@@ -332,4 +322,6 @@ public partial class inputPercentInfo : System.Web.UI.Page
         return pageGuid;
     }
 
+
+   
 }
