@@ -70,10 +70,10 @@
             }   
         }
 
-        if (Sqlite_Task_T.GetCurrStatus(GlobalConf.KEY_VICTORY) == true)
-        {
-            GlobalConf.VICTORY = true;
-        }
+       // if (Sqlite_Task_T.GetCurrStatus(GlobalConf.KEY_VICTORY) == true)
+      //  {
+      //      GlobalConf.VICTORY = true;
+      //  }
         
         //正常百分比增长的值
          GlobalConf.percent = _percent;   

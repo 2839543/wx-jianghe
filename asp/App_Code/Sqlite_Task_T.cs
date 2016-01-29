@@ -144,6 +144,36 @@ public class Sqlite_Task_T
                    cmd.ExecuteNonQuery();
                }
            }
+       } 
+
+       public static void UpdateShowVictory()
+       {
+           using (SQLiteConnection con = new SQLiteConnection(GlobalConf.DB_PATH))
+           {
+               con.Open();
+               string sqlStr = @"UPDATE task_conf
+                                     SET value = 'true'" +
+                                   " WHERE key  = '" + GlobalConf.KEY_VICTORY + "'";
+               using (SQLiteCommand cmd = new SQLiteCommand(sqlStr, con))
+               {
+                   cmd.ExecuteNonQuery();
+               }
+           }
+       }
+
+       public static void UpdateVisibleVictory()
+       {
+           using (SQLiteConnection con = new SQLiteConnection(GlobalConf.DB_PATH))
+           {
+               con.Open();
+               string sqlStr = @"UPDATE task_conf
+                                     SET value = 'false'" +
+                                   " WHERE key  = '" + GlobalConf.KEY_VICTORY + "'";
+               using (SQLiteCommand cmd = new SQLiteCommand(sqlStr, con))
+               {
+                   cmd.ExecuteNonQuery();
+               }
+           }
        }
 
        public static void Delete()

@@ -9,22 +9,22 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-[assembly: log4net.Config.XmlConfigurator(Watch = true)]  
+[assembly: log4net.Config.XmlConfigurator(Watch = true)]
 
 public partial class inputPercentInfo : System.Web.UI.Page
 {
     //log4net.ILog log = log4net.LogManager.GetLogger("loginfo");
     public static readonly log4net.ILog log = log4net.LogManager.GetLogger("loginfo");
-     
+
     protected void Page_Load(object sender, EventArgs e)
     {
-         
+
         showTime.Text = DateTime.Now.ToString();
         // victoryState.Text = GlobalConf.VICTORY.ToString();
-       
 
 
-        if ( Sqlite_Task_T.GetCurrStatus(GlobalConf.KEY_START_VOTE)== true)
+
+        if (Sqlite_Task_T.GetCurrStatus(GlobalConf.KEY_START_VOTE) == true)
         {
             //log.Info(" [Page_Load] in START_VOTE->" + GlobalConf.START_VOTE + " Green  
             this.lbl_vote.BackColor = System.Drawing.Color.GreenYellow;
@@ -35,7 +35,7 @@ public partial class inputPercentInfo : System.Web.UI.Page
             this.lbl_vote.BackColor = System.Drawing.Color.Red;
         }
 
-        if (Sqlite_Task_T.GetCurrStatus(GlobalConf.KEY_IS_HALFWAY_PAUSE) == true )
+        if (Sqlite_Task_T.GetCurrStatus(GlobalConf.KEY_IS_HALFWAY_PAUSE) == true)
         {
             //log.Info(" [Page_Load] in HALFWAY_PAUSE->" + GlobalConf.HALFWAY_PAUSE + " Red"); 
             this.lbl_66.BackColor = System.Drawing.Color.GreenYellow;
@@ -47,13 +47,13 @@ public partial class inputPercentInfo : System.Web.UI.Page
         }
 
         if (Sqlite_Task_T.GetCurrStatus(GlobalConf.KEY_VICTORY) == true)
-        { 
-           // log.Info(" [Page_Load] in VICTORY->" + GlobalConf.VICTORY + " GreenYellow");
+        {
+            // log.Info(" [Page_Load] in VICTORY->" + GlobalConf.VICTORY + " GreenYellow");
             this.lbl_fire.BackColor = System.Drawing.Color.GreenYellow;
         }
         else
         {
-           // log.Info(" [Page_Load] in VICTORY->" + GlobalConf.VICTORY + " Red");
+            // log.Info(" [Page_Load] in VICTORY->" + GlobalConf.VICTORY + " Red");
             this.lbl_fire.BackColor = System.Drawing.Color.Red;
         }
     }
@@ -103,9 +103,14 @@ public partial class inputPercentInfo : System.Web.UI.Page
     {
         if (!IsPageRefreshed)
         {
-            Sqlite_Task_T.Update(GlobalConf.KEY_VICTORY, "true");
-            GlobalConf.VICTORY = true;
-            this.lbl_fire.BackColor = System.Drawing.Color.GreenYellow;
+            Sqlite_Task_T.UpdateShowVictory();
+
+            if (Sqlite_Task_T.GetCurrStatus(GlobalConf.KEY_VICTORY) == true)
+            {
+                GlobalConf.VICTORY = true;
+                this.lbl_fire.BackColor = System.Drawing.Color.GreenYellow;
+
+            }
         }
     }
 
@@ -113,12 +118,13 @@ public partial class inputPercentInfo : System.Web.UI.Page
     protected void btn_visible_3_Click(object sender, EventArgs e)
     {
         if (!IsPageRefreshed)
-        {
-            Sqlite_Task_T.Update(GlobalConf.KEY_VICTORY, "false");
-            GlobalConf.VICTORY = false;
+        { 
+            //Sqlite_Task_T.Update(GlobalConf.KEY_VICTORY, "false");
+            Sqlite_Task_T.UpdateVisibleVictory();
             this.lbl_fire.BackColor = System.Drawing.Color.Red;
+            GlobalConf.VICTORY = false;
         }
-    } 
+    }
 
 
     //private static ILog log = LogManager.GetLogger(typeof(RefreshServe));
@@ -208,7 +214,7 @@ public partial class inputPercentInfo : System.Web.UI.Page
         string pageGuid = GetCurPageGuid();
         if (cookie.Values.Count > 0)
         {
-            bool flag = false ;
+            bool flag = false;
             if (cookie.Values[pageGuid] != null)
             {
                 // flag = cookie.Values[pageGuid].IndexOf(GetCurSubmitTime()) > -1;
@@ -224,7 +230,7 @@ public partial class inputPercentInfo : System.Web.UI.Page
                 {
                     flag = true;
                 }
-         
+
             }
             else
                 flag = true;//防止出现异常,总是可以提交
@@ -325,5 +331,5 @@ public partial class inputPercentInfo : System.Web.UI.Page
     }
 
 
-   
+
 }

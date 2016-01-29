@@ -108,7 +108,8 @@
         <br />
         <hr />
         <p>
-            测试用工具区</p>
+            测试用工具区<asp:Button ID="Button1" runat="server" Text="Button" />
+        </p>
         <p>
             &nbsp;</p>
     </form>
