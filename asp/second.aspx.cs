@@ -17,7 +17,7 @@ public partial class second : System.Web.UI.Page
 
         if (GlobalConf.VICTORY == true)
         {
-            Response.Redirect("h5/158/third.html", false);
+            Response.Redirect("third.html", false);
         } 
 
         result.Text = percent.ToString();   

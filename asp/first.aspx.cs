@@ -13,7 +13,7 @@ public partial class first : System.Web.UI.Page
     	// change by hxq 100 % only show page 3 2016/1/23
          if (GlobalConf.VICTORY == true)
          {
-            Response.Redirect("h5/158/third.html", false);
+            Response.Redirect("third.html", false);
         }  
     }
 }

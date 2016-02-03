@@ -61,48 +61,48 @@ public partial class inputPercentInfo : System.Web.UI.Page
     //开始投票 绿色
     protected void btn_start_vote_Click(object sender, EventArgs e)
     {
-        if (!IsPageRefreshed)
-        {
+        //if (!IsPageRefreshed)
+        //{
             Sqlite_Task_T.Update(GlobalConf.KEY_START_VOTE, "true");
             this.lbl_vote.BackColor = System.Drawing.Color.GreenYellow;
-        }
+       // }
     }
 
     //停止投票 红色
     protected void btn_stop_vote_Click(object sender, EventArgs e)
     {
-        if (!IsPageRefreshed)
-        {
+        //if (!IsPageRefreshed)
+        //{
             Sqlite_Task_T.Update(GlobalConf.KEY_START_VOTE, "false");
             this.lbl_vote.BackColor = System.Drawing.Color.Red;
-        }
+        //}
     }
 
     //66% 控制无效   绿色
     protected void btn_visible_66_Click(object sender, EventArgs e)
     {
-        if (!IsPageRefreshed)
-        {
+       // if (!IsPageRefreshed)
+       // {
             Sqlite_Task_T.Update(GlobalConf.KEY_IS_HALFWAY_PAUSE, "true");
             this.lbl_66.BackColor = System.Drawing.Color.GreenYellow;
-        }
+       // }
     }
 
     //仅显示到 66%  红色
     protected void btn_only_66_Click(object sender, EventArgs e)
     {
-        if (!IsPageRefreshed)
-        {
+       // if (!IsPageRefreshed)
+       // {
             Sqlite_Task_T.Update(GlobalConf.KEY_IS_HALFWAY_PAUSE, "false");
             this.lbl_66.BackColor = System.Drawing.Color.Red;
-        }
+      //  }
     }
 
     //仅显示烟花页面 绿色 
     protected void btn_show_3_Click(object sender, EventArgs e)
     {
-        if (!IsPageRefreshed)
-        {
+       // if (!IsPageRefreshed)
+       // {
             Sqlite_Task_T.UpdateShowVictory();
 
             if (Sqlite_Task_T.GetCurrStatus(GlobalConf.KEY_VICTORY) == true)
@@ -111,19 +111,19 @@ public partial class inputPercentInfo : System.Web.UI.Page
                 this.lbl_fire.BackColor = System.Drawing.Color.GreenYellow;
 
             }
-        }
+        //}
     }
 
     //不显示烟花页面 红色 
     protected void btn_visible_3_Click(object sender, EventArgs e)
     {
-        if (!IsPageRefreshed)
-        { 
+       // if (!IsPageRefreshed)
+       // { 
             //Sqlite_Task_T.Update(GlobalConf.KEY_VICTORY, "false");
             Sqlite_Task_T.UpdateVisibleVictory();
             this.lbl_fire.BackColor = System.Drawing.Color.Red;
             GlobalConf.VICTORY = false;
-        }
+       // }
     }
 
 
